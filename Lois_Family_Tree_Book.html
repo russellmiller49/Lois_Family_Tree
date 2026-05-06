@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Family Story — Print Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: 6in 9in;
+    margin: 0.62in 0.55in 0.7in;
+  }
+
+  :root {
+    --paper: #fbf4e4;
+    --ink: #2a1810;
+    --muted: #6d523f;
+    --rule: #a9875d;
+    --accent: #7d2e2e;
+    --blue: #24374c;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--paper);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 11.4pt;
+    line-height: 1.42;
+  }
+
+  .book {
+    max-width: 7.2in;
+    margin: 0 auto;
+    background:
+      radial-gradient(circle at top left, rgba(125, 46, 46, 0.06), transparent 42%),
+      var(--paper);
+  }
+
+  .cover {
+    min-height: 8in;
+    display: grid;
+    align-content: center;
+    text-align: center;
+    page-break-after: always;
+    break-after: page;
+    border: 1px solid rgba(125, 46, 46, 0.24);
+    padding: 0.45in;
+  }
+
+  .cover img {
+    width: 3.85in;
+    height: 2.7in;
+    object-fit: cover;
+    margin: 0 auto 0.35in;
+    border: 8px solid #fff8eb;
+    box-shadow: 0 12px 26px rgba(42, 24, 16, 0.18);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Playfair Display", Georgia, serif;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  h1 {
+    font-size: 42pt;
+    line-height: 0.95;
+    font-style: italic;
+  }
+
+  h2 {
+    font-size: 26pt;
+    line-height: 1.05;
+    font-style: italic;
+    margin-bottom: 0.13in;
+  }
+
+  h3 {
+    font-size: 17pt;
+    line-height: 1.1;
+    font-style: italic;
+    margin: 0.2in 0 0.08in;
+  }
+
+  h4 {
+    font-size: 13.4pt;
+    font-style: italic;
+    margin-bottom: 0.02in;
+  }
+
+  p { margin: 0 0 0.11in; }
+
+  .kicker,
+  .chapter-number,
+  .meta,
+  .toc li span,
+  figcaption span {
+    font-family: "Cinzel", Georgia, serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    font-size: 7.2pt;
+    font-style: normal;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 13pt;
+    font-style: italic;
+    max-width: 4.6in;
+  }
+
+  .chapter {
+    page-break-before: always;
+    break-before: page;
+    padding-top: 0.12in;
+  }
+
+  .chapter.no-break {
+    page-break-before: auto;
+    break-before: auto;
+  }
+
+  .toc {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .toc ol {
+    margin: 0.25in 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .toc li {
+    border-bottom: 1px solid rgba(169, 135, 93, 0.38);
+    padding: 0.08in 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.2in;
+  }
+
+  .dropcap::first-letter {
+    float: left;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 46pt;
+    line-height: 0.84;
+    color: var(--accent);
+    padding-right: 0.06in;
+  }
+
+  .pullquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.12in 0.18in;
+    margin: 0.18in 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 15pt;
+    line-height: 1.25;
+    font-style: italic;
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  .grid-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.14in;
+  }
+
+  .child,
+  .lineage-item,
+  .directory-person,
+  .business-entry,
+  .research-note {
+    border: 1px solid rgba(169, 135, 93, 0.34);
+    background: rgba(255, 255, 255, 0.24);
+    padding: 0.12in;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .child { min-height: 1.34in; }
+
+  .lineage-item {
+    margin-bottom: 0.08in;
+  }
+
+  .lineage-item.featured {
+    border-color: rgba(125, 46, 46, 0.55);
+    background: rgba(125, 46, 46, 0.08);
+  }
+
+  .generation {
+    border-top: 1px solid rgba(125, 46, 46, 0.34);
+    padding-top: 0.11in;
+  }
+
+  .story-body p {
+    font-size: 12pt;
+  }
+
+  .story-chapter.subsequent {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .plate {
+    margin: 0 0 0.18in;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .plate img {
+    width: 100%;
+    max-height: 5.7in;
+    object-fit: contain;
+    display: block;
+    border: 1px solid rgba(169, 135, 93, 0.42);
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  figcaption {
+    padding: 0.08in 0.02in 0;
+    color: var(--muted);
+  }
+
+  figcaption strong {
+    display: block;
+    color: var(--ink);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 13.5pt;
+    font-style: italic;
+    margin: 0.02in 0;
+  }
+
+  .business-entry {
+    display: grid;
+    grid-template-columns: 1.35in 1fr;
+    gap: 0.14in;
+    margin-bottom: 0.12in;
+  }
+
+  .business-entry img {
+    width: 100%;
+    height: 1.05in;
+    object-fit: cover;
+    border: 1px solid rgba(169, 135, 93, 0.4);
+  }
+
+  .tag {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .research-note {
+    border-left: 4px solid var(--blue);
+    margin-bottom: 0.1in;
+  }
+
+  .directory {
+    column-count: 2;
+    column-gap: 0.18in;
+  }
+
+  .directory-group {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.16in;
+  }
+
+  .directory-person {
+    margin-bottom: 0.07in;
+    padding: 0.08in;
+  }
+
+  .directory-person strong {
+    display: block;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 11.7pt;
+    font-style: italic;
+  }
+
+  .directory-person span {
+    display: block;
+    color: var(--accent);
+    font-size: 8.5pt;
+    margin: 0.01in 0 0.02in;
+  }
+
+  .directory-person p {
+    font-size: 9.4pt;
+    line-height: 1.24;
+    margin: 0;
+  }
+
+  .colophon {
+    page-break-before: always;
+    break-before: page;
+    text-align: center;
+    padding-top: 2.5in;
+    color: var(--muted);
+  }
+
+  @media screen {
+    body { padding: 0.35in; }
+    .book { box-shadow: 0 20px 70px rgba(42, 24, 16, 0.2); padding: 0.5in; }
+  }
+</style>
+</head>
+<body>
+<main class="book">
+  <section class="cover">
+    <img src="Pictures/HINDA PESSIN RESSMAN and her husband, DAVID RESSMAN.png" alt="Hinda Pessin and David Moses Ressman">
+    <p class="kicker">A Family Chronicle</p>
+    <h1>Our Family<br>&amp; Where We Came From</h1>
+    <p class="subtitle" style="margin: 0.25in auto 0;">From Nikolief to Chicago, Appleton, Flagstaff, Phoenix, and the generations gathered around Lois.</p>
+  </section>
+
+  <section class="toc chapter no-break">
+    <p class="chapter-number">Contents</p>
+    <h2>In This Book</h2>
+    <ol>
+      <li><span>Chapter 1</span> The Crossing</li>
+      <li><span>Chapter 2</span> The Seven Who Survived</li>
+      <li><span>Chapter 3</span> The Bloodline to Lois</li>
+      <li><span>Chapter 4</span> Stories Worth Telling</li>
+      <li><span>Chapter 5</span> Image Plates</li>
+      <li><span>Chapter 6</span> Hands That Built</li>
+      <li><span>Chapter 7</span> Records & Corrections</li>
+      <li><span>Chapter 8</span> People Directory</li>
+    </ol>
+  </section>
+
+  <section class="chapter">
+    <p class="chapter-number">Chapter 1</p>
+    <h2>The Crossing</h2>
+    <p class="dropcap">Long before any of us were here, there was a tailor in a Russian town called Nikolief, or Nikolaev, who made uniforms for the Tsar’s army. His name was David Moses Ressman, and he would whip his children to say their prayers, then have them help him sew. His wife was Hinda Pessin, daughter of a chazan and shochet, sister of a magid, a storyteller. She came from a learned family.</p>
+    <p>Hinda was deaf. She had been blinded in one eye as a girl when a kite struck her face during play. As a young woman, Cossacks had clubbed her about the head, and that may have had something to do with the deafness too. But she carried thirteen children, seven of whom lived, and she kept the family together long enough to send them, one by one, across the ocean to a country none of them had ever seen.</p>
+    <p class="pullquote">During the voyage, the children were passed up over a gate to spend a little time with their grandparents.</p>
+    <p>The first to make the journey was Ed Ressman, David Moses’s brother, who landed in Chicago, then moved north to Appleton, Wisconsin. Beginning around 1890, he conducted minyans and religious services in his own home. That living-room beginning became part of the story of Moses Montefiore Congregation.</p>
+    <p>In 1902, Abram and Joseph Ressman crossed with their wives and children. In 1903, the rest came: David Moses and Hinda themselves, with Rachel and her children. The Ressmans traveled tourist class. Rachel and her children traveled steerage. The boat may have been called the Saxonia. It landed in Baltimore. From there, they took the train to Chicago.</p>
+    <p>They founded a company called Acme Manufacturing that made parts of suits, but there was so much fighting within the family that the business did not last. Every Ressman brother worked in the tailoring trade. Rachel scrubbed floors for fifty cents apiece. They were tired and they were poor and they were here, and that is where this story actually begins.</p>
+  </section>
+
+  <section class="chapter">
+    <p class="chapter-number">Chapter 2</p>
+    <h2>The Seven Who Survived</h2>
+    <p class="subtitle">David Moses and Hinda had thirteen children, but seven lived. The scanned family history also resolves Leon’s place inside this core Ressman line.</p>
+    <div class="grid-two">
+      
+        <article class="child">
+          <h4>Rachel Ressman Beilen/Bailin</h4>
+          <p class="meta">1865–1954</p>
+          <p>The eldest. Crossed in 1903 with her children after David Beilen came ahead; raised the Bailin branch in Chicago after his death.</p>
+        </article>
+        <article class="child">
+          <h4>Joseph Ressman</h4>
+          <p class="meta">1867/1873–1949</p>
+          <p>Married Jennie Joseph. Their seven daughters stayed mostly in the Chicago area, except Lottie, who settled in Neenah, Wisconsin.</p>
+        </article>
+        <article class="child">
+          <h4>Abram Ressman</h4>
+          <p class="meta">Dates to verify</p>
+          <p>A tailor in Odessa before immigration. The scanned history says he and Celia had no children; later he married Carrie Cohen.</p>
+        </article>
+        <article class="child">
+          <h4>Louis Ressman</h4>
+          <p class="meta">1882–1969</p>
+          <p>Married Ida Cohen. The expanded branch adds Jeanette, David, Esther, and Harry Ressman.</p>
+        </article>
+        <article class="child">
+          <h4>Rebecca Ressman Bahcall</h4>
+          <p class="meta">1881–1973</p>
+          <p>Gave her passage ticket to Isadore Bahcall, then married him in Appleton, where the Bahcall business line grew.</p>
+        </article>
+        <article class="child">
+          <h4>Harry Ressman</h4>
+          <p class="meta">1885/1886–1976</p>
+          <p>Moved to Appleton on his honeymoon with Sarah Spector and built Ressman’s Clothiers across generations.</p>
+        </article>
+        <article class="child">
+          <h4>Leon Ressman</h4>
+          <p class="meta">1890–1971</p>
+          <p>No longer an uncertain outside branch. The scanned history names Leon as the youngest surviving child of David Moses and Hinda.</p>
+        </article>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <p class="chapter-number">Chapter 3</p>
+    <h2>The Bloodline to Lois</h2>
+    <h3 class="generation">The Old Country</h3>
+      <article class="lineage-item ">
+        <h4>David Moses Ressman</h4>
+        <p class="meta">1849–1925 · Tailor in Nikolief / Nikolaev</p>
+        <p>Made uniforms for the Tsar's army. Immigrated through Baltimore in 1903 and died in Chicago. Father of thirteen children, seven of whom survived.</p>
+      </article>
+      <article class="lineage-item ">
+        <h4>Hinda Pessin Ressman</h4>
+        <p class="meta">1850–1937 · Daughter of a chazan</p>
+        <p>Deaf. Blinded in one eye by a kite. Clubbed by Cossacks. Carried thirteen children, raised seven, and crossed an ocean. Her father was remembered as a chazan and shochet; her brother Nathan, a magid.</p>
+      </article><h3 class="generation">The First American Generation</h3>
+      <article class="lineage-item ">
+        <h4>Leon Ressman</h4>
+        <p class="meta">1890–1971 · Tailor → Cleaner → Clothier</p>
+        <p>Came from Russia at age ten. Sent young to work in his older brothers' tailor shops. Eventually opened a cleaning plant in Pontiac, Illinois — until the gasoline fumes made him ill.</p>
+      </article>
+      <article class="lineage-item ">
+        <h4>Rose Vanetsky Ressman</h4>
+        <p class="meta">1889–1975 · His Wife</p>
+        <p>Only child of Louis Vanetsky (a junk peddler with a horse and wagon in Englewood) and Machla Rifkin. Fell off a second-floor porch at nine and broke her knee. Slight limp her whole life — never slowed her down.</p>
+      </article><h3 class="generation">Born American</h3>
+      <article class="lineage-item ">
+        <h4>Sylvia Ressman Slafer</h4>
+        <p class="meta">May 28, 1910 – 2006 · Born in Pontiac, Illinois</p>
+        <p>First child of Leon and Rose. Born during a year the family had moved 90 miles south of Chicago for work. Lived through the Depression with her parents and siblings on Montrose Avenue, Chicago.</p>
+      </article>
+      <article class="lineage-item ">
+        <h4>Marcus Slaferman / Slafer</h4>
+        <p class="meta">1907/1909–1983 · Dress pattern grader</p>
+        <p>Shortened the family name from 'Slaferman' to 'Slafer.' Father of Howard (1939) and Lois (1946).</p>
+      </article><h3 class="generation">The Heart of It</h3>
+      <article class="lineage-item featured">
+        <h4>Lois Ann Slafer Miller</h4>
+        <p class="meta">May 27, 1946 — Chicago, Illinois · Mother. Travel consultant. Phoenix, Arizona.</p>
+        <p>Married Joel F. Miller on October 21, 1972 in Chicago. Mother of Maizie, Russell, and Ilene. Grandmother of Jacob and Landon. The center of this whole story.</p>
+      </article><h3 class="generation">Yours</h3>
+      <article class="lineage-item ">
+        <h4>Maizie Lee Miller</h4>
+        <p class="meta">September 15, 1973 — Tel Aviv, Israel · Eldest</p>
+        <p>Born during her parents' time abroad.</p>
+      </article>
+      <article class="lineage-item ">
+        <h4>Russell Jasun Miller</h4>
+        <p class="meta">January 15, 1978 — Phoenix, Arizona · Middle child</p>
+        <p>Eventually a Navy physician — but that's a different chapter.</p>
+      </article>
+      <article class="lineage-item ">
+        <h4>Michaela Diane Brune Miller</h4>
+        <p class="meta">His wife · Mother of Jacob and Landon</p>
+        <p>Married Russell. Mother of Jacob and Landon.</p>
+      </article>
+      <article class="lineage-item ">
+        <h4>Ilene Davida Miller</h4>
+        <p class="meta">May 14, 1980 — Phoenix, Arizona · Youngest</p>
+        <p>The third star.</p>
+      </article><h3 class="generation">Mom's Grandchildren</h3>
+      <article class="lineage-item ">
+        <h4>Jacob Shaw Miller</h4>
+        <p class="meta">June 19, 2013 · Russell &amp; Michaela's eldest son</p>
+        <p>The first of the next generation. Mom's grandson.</p>
+      </article>
+      <article class="lineage-item ">
+        <h4>Landon Andrew Miller</h4>
+        <p class="meta">November 5, 2014 · Russell &amp; Michaela's younger son</p>
+        <p>The second of the next generation. Mom's grandson.</p>
+      </article>
+      <article class="lineage-item ">
+        <h4>Ozzie Boswell Miller</h4>
+        <p class="meta">c. 2009–2025 · Lois's granddog. Family grandchild.</p>
+        <p>Passed in 2025 at age 16. Loved as one of the grandchildren, and part of the Miller family story in his own sweet way.</p>
+      </article>
+  </section>
+
+  
+    <section class="chapter story-chapter ">
+      <p class="chapter-number">Story 1</p>
+      <h2>Hinda &amp; the Cossacks</h2>
+      <p class="subtitle">From the Old Country</p>
+      <div class="story-body"><p>Hinda Pessin was born into a learned family in Russia. Her father, Harry Pessin, was a chazan and shochet. Her brother Nathan was a magid — a storyteller. Her mother was Esther Skolnick Pessin. They were, by the family's own account, "a well-educated family."</p>
+    <p>But the world she was born into was not kind to Jewish women, and Hinda's life carried scars from it. She was <em>deaf</em> — a condition some of her children would inherit in lesser degree. She had been <em>blinded in one eye</em> as a child when a kite some children were playing with struck her in the face. And as a young woman, she had been <em>clubbed about the head by Cossacks</em>, which the family always suspected may have contributed to her deafness.</p>
+    <p>She married a tailor named David Moses Ressman in Nikolief, where he made uniforms for the Tsar's army. They had thirteen children. Only seven survived. And eventually, in 1903, she boarded a boat with the children who had lived and crossed the Atlantic to a country whose language she did not speak.</p>
+    <p>If you want to know where the family's stubbornness comes from — its refusal to be diminished — it comes from Hinda.</p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 2</p>
+      <h2>Tea From a Saucer</h2>
+      <p class="subtitle">How Rose Met Leon</p>
+      <div class="story-body"><p>Rose Vanetsky was the only child of Louis and Machla Vanetsky. Louis was a junk peddler who rode his horse and wagon through the Englewood neighborhood of Chicago, buying and selling. They never had a lot of money, and like many families of the time, they kept a boarder in the house to help pay the rent.</p>
+    <p>One day when Rose was about sixteen, Leon Ressman — the youngest of David Moses's seven surviving children — came by the house with friends. Rose was sitting on her mother's lap drinking tea out of a saucer. The way the family told it, <em>he wasn't very impressed with her, and thought she acted like a baby.</em></p>
+    <p>Still, they started dating. When they were both nineteen, they had a big wedding. In those days, the bride's family did the work — Grandma Vanetsky even <em>plucked all the chickens</em> for the dinner.</p>
+    <p>That was 1909. Their first child, Sylvia — your grandmother — was born the next May.</p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 3</p>
+      <h2>The Saxonia</h2>
+      <p class="subtitle">The Crossing, 1903</p>
+      <div class="story-body"><p>It happened in two waves. In 1902, Abram Ressman and his wife Celia, and Joseph Ressman and his wife Jennie, with their children, crossed the Atlantic with Rachel's husband David Beilen ahead of her. The next year, in 1903, Rachel followed with the children — and David Moses Ressman and Hinda came too, with the rest of the family.</p>
+    <p>The Ressmans had managed to afford <em>tourist class</em>. Rachel and her children, however, traveled in <em>steerage</em>, in the cramped lower decks where most immigrants spent the journey.</p>
+    <p>What the family remembered most about that voyage was a small, tender thing: <em>during the voyage, the children were passed up over a gate to spend a little time with their grandparents.</em> Imagine that scene — the boat rolling, the salt wind, hands reaching down through the bars to lift up a child for a moment.</p>
+    <p>The boat may have been the <em>Saxonia</em>. It docked in Baltimore. From there, the family rode the train to Chicago, where they would settle, fight, fail in business, succeed in business, and put down the roots that would eventually carry their name into your kitchen in Phoenix.</p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 4</p>
+      <h2>Moses Montefiore Congregation</h2>
+      <p class="subtitle">Appleton, Wisconsin</p>
+      <div class="story-body"><p>Edward "Ed" Ressman — David Moses's brother — was the first of the family to come to America. He arrived as a peddler and scrap dealer with his wife Sonya Hirshkovitz. They settled first in Chicago, then moved north to Appleton, Wisconsin, where Sonya had relatives, the Greenbergs.</p>
+    <p>Appleton, in the late nineteenth century, had a small Jewish community but no synagogue. Ed solved that problem the way the family solved most problems: by doing it himself. Beginning around <em>1890</em>, he conducted minyans and religious services in his own home. He owned his own Torahs, and the early peddlers, the only other Orthodox Jews of the city, attended.</p>
+    <p>The Moses Montefiore Congregation was officially founded in <em>1903</em>. Its first officers included President David Belzer, Vice President Abe Levin, Secretary A. L. Jacobson, and Treasurer <em>Isadore Bahcall</em> — the same Isadore who came to America after Rebecca Ressman gave him her ticket.</p>
+    <p>In 1910, Aaron Zussman came to Appleton with his family and became cantor, teacher, shochet, and spiritual leader. A synagogue was built on the corner of <em>Atlantic and Bateman streets</em> in 1922 and dedicated on June 10, 1923. The congregation later joined United Synagogues of America in 1965, moved to a modern North Meade Street building in 1970, and continues as part of Jewish life in the Fox Valley.</p>
+    <p>So the story is larger than one living room. It is Ed's home, Isadore's treasury, a Bateman Street synagogue, and a community that kept adapting for more than a century.</p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 5</p>
+      <h2>Rachel Scrubbed Floors</h2>
+      <p class="subtitle">First Years in Chicago</p>
+      <div class="story-body"><p>The Ressmans landed in Baltimore and made their way to Chicago, where the rest of the family had already begun to settle. They were tailors. That's all they had ever been. So they did what tailors do: they founded a company.</p>
+    <p>It was called <em>Acme Manufacturing</em>, and it made parts of suits. The Ressman brothers — Abram, Louis, Joseph, Harry, Leon — all worked in it. But there was, the family said with characteristic plainness, <em>so much fighting within the family that the business didn't last.</em></p>
+    <p>When Acme failed, the brothers scattered. <em>All the Ressman brothers worked in the tailoring trade.</em> Rachel — the eldest — took whatever work she could get, including <em>scrubbing floors for fifty cents</em>.</p>
+    <p>Harry Ressman went to work for Hart, Schaffner & Marx, a major manufacturer of men's clothing. There he met another employee, Sarah Spector, and married her. On their honeymoon, they visited Harry's sister Rebecca Bahcall in Appleton. They liked it. They had no money and no jobs, but they stayed — and eventually opened a clothing store of their own called <em>Ressman's Clothiers</em>. That store still operates today, run by Harry's grandson Alan Rusky.</p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 6</p>
+      <h2>The Cleaning Plant</h2>
+      <p class="subtitle">Pontiac, Illinois</p>
+      <div class="story-body"><p>After Leon and Rose married in 1909 and Sylvia was born the next May, Leon decided to leave Chicago. The labor problems in the clothing industry were too much for him, and he wanted something of his own.</p>
+    <p>They moved ninety miles south, to a small town called Pontiac, Illinois — the county seat, with about six Jewish families. Leon opened a <em>cleaning and dyeing plant</em>. His first machines were operated by hand. He worked very hard. Eventually he opened a plant on the main street of town, and the business succeeded.</p>
+    <p>Two and a half years after Sylvia was born came Ruth, then a son, Ezra. The Sacks and the Moshines were the closest families — they got together for every Holiday and weekend.</p>
+    <p>But by the time Sylvia was about ten, Leon was getting <em>ill from the gasoline fumes</em> he worked with every day. They had to leave. Leon's cousin Joe Bailen suggested Green Bay, Wisconsin, where they could open a clothing store together. So they went.</p>
+    <p>The Green Bay store failed in the Depression. They came back to Chicago. Leon opened a tailor shop at <em>3253 W. Montrose Avenue</em>, with the family living in a small apartment behind the store. Sylvia went to high school. Ruth and Ezra to grammar school. <em>Those were struggling years, but we were a very happy family,</em> Sylvia would say later, <em>and never really thought that we were missing very much.</em></p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 7</p>
+      <h2>Sylvia &amp; the Porch</h2>
+      <p class="subtitle">Your Grandmother</p>
+      <div class="story-body"><p>Sylvia Ressman — your grandmother — was born May 28, 1910 in Pontiac, Illinois, the firstborn of Leon and Rose. By every account, she had a happy childhood. The cleaning plant was doing well. The town was small, the Jewish community close.</p>
+    <p>One day, when she was about nine, she fell off a second-floor porch. They didn't know until some time later that she had <em>broken her kneecap</em>. She had many operations on that knee, but came through them all.</p>
+    <p>The ankle gave her trouble, the family said, because <em>she wanted to do the things the other girls did, and used her leg too much.</em> She had a slight limp her whole life. And, the record notes simply: <em>it never stopped her from raising her three children, and doing all the things that a housewife in those days had to do to maintain a busy household.</em></p>
+    <p>She had, the family also remembered, a good singing voice. And she was very good at arithmetic.</p>
+    <p>That toughness — the refusal to let a broken knee define a life — is the same toughness that came through Hinda from Russia, that carried Rose through the Depression, and that you carried into your own life. It runs in the line.</p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 8</p>
+      <h2>Ezra Sent His Pay Home</h2>
+      <p class="subtitle">World War II</p>
+      <div class="story-body"><p>Ezra Ressman — Sylvia and Ruth's younger brother — went to the University of Illinois downstate. Ruth and Sylvia worked, and the family helped put their brother through college. Money was hard. These were Depression years.</p>
+    <p>After his pre-law degree, Ezra continued at DePaul University to study law. He passed the State Bar Exam, became a full-fledged lawyer, and opened a practice with two friends, Mor Levin and Jerry Blonder.</p>
+    <p>Then the war came.</p>
+    <p>Ezra <em>went into service</em>. He was drafted, where his partners weren't. While he served, he <em>sent his army pay back home to keep the law office going.</em> His partners maintained the practice in his absence.</p>
+    <p>After the war, Ezra's story reached unexpectedly west. He was one of the original investors in <em>Ramada</em>, whose first hotel opened on Route 66 in Flagstaff, Arizona in 1954. The family line runs through tailor shops, scrap yards, law offices, and then, somehow, into the motel signs of the American highway.</p>
+    <p>He never married. He died many years later, having spent his life as a Chicago lawyer — quiet, generous, the kind of man who would mail his army pay back to his partners so the work could go on.</p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 9</p>
+      <h2>Ressman's Clothiers</h2>
+      <p class="subtitle">Appleton, Wisconsin — Still Open</p>
+      <div class="story-body"><p>This is one of the great enduring stories of the family. Harry Ressman went to work for Hart, Schaffner & Marx in Chicago after the closing of Acme Manufacturing. There he met another employee, Sarah Spector, and married her.</p>
+    <p>On their <em>honeymoon</em>, they went to visit Harry's sister Rebecca Bahcall in Appleton, Wisconsin. They liked it so much they decided to stay — <em>with no money and no jobs.</em> Harry started doing tailoring work for the people of the town, and eventually they opened a small clothing store called <em>Ressman's Clothiers</em>.</p>
+    <p>They had two daughters, Diana (1910) and Esther "Jere" (1914). Diana married Ben Rusky, a salesman, and they had a son, Alan Rusky, born 1942. When Alan grew up, he came to work in the store — and today, more than a century after that honeymoon visit, <em>Alan still owns Ressman's Clothiers</em>. His wife Annette works there too. Their one employee is Jared "Jerry" Bailin, the great-grandson of Harry's sister Rachel.</p>
+    <p>In 1979, a local newspaper ran a feature with a photograph of Alan Rusky standing in the store, holding up a comically large pair of shorts under the headline <em>"His undies in a bundle over this."</em> The store was thriving even then. It still is.</p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 10</p>
+      <h2>The Playboy Connection</h2>
+      <p class="subtitle">An Unexpected Branch</p>
+      <div class="story-body"><p>Of all the threads that ran out of Appleton, Wisconsin and the family scrap business, this one is perhaps the most unexpected.</p>
+    <p>Rebecca Ressman — David Moses's daughter, the one who gave her ticket to Isadore Bahcall — settled in Appleton with him after he came over with Rose. They had three children: Rose, Edward, and Sarah "Bebe." Rose Bahcall married Walter Rosenzweig from Bessemer, Michigan. Walter went into the scrap business with his father-in-law. They had two children: Donna (1929) and <em>Richard (1935)</em>.</p>
+    <p>Richard Rosenzweig lived in Chicago for many years before moving to Los Angeles. There, he became <em>Executive Vice-President of Playboy Enterprises</em> and <em>President of Playboy Productions</em> — the production company involved in television, film, and (at the time of the family record) "preparing video disc systems." He was married twice — to Elaine Fantle and Bonnie Bovac — and divorced from both.</p>
+    <p>From a tailor in Russia to the Tsar's army to a scrap heap in Appleton, Wisconsin to the executive suite of Playboy Enterprises, in three generations. Only in America.</p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 11</p>
+      <h2>The Vanetskys</h2>
+      <p class="subtitle">Englewood, Chicago</p>
+      <div class="story-body"><p>On your grandmother Rose's side, the story starts in Englewood, on the south side of Chicago, sometime between 1870 and 1880, when <em>Louis</em> and <em>Machla (Mary) Vanetsky</em> arrived from somewhere in Russia. Where exactly, no one wrote down.</p>
+    <p>Rose was their only child. The family had tried to have other children, but none survived birth or early childhood. So Rose grew up an only child, raised in a small home that almost always had a boarder living in it to help pay the rent. Her mother used to tell her that the boarder was <em>like a big brother to her</em>; many years later, Rose would still know him and his children.</p>
+    <p>Louis was a <em>junk peddler</em>. He rode his horse and wagon through Englewood, buying scraps from people on the street and selling what he gathered to the junk yards that existed in those days. He was, in Rose's memory, <em>kind of tall, and always wore a mustache and a little Van Dyke beard.</em></p>
+    <p>Machla was small and plump — Rose's word — with a good singing voice and a head for arithmetic. The family name Rifkin, her maiden name, would echo down the line. She died after surgery for gallbladder disease while the family was living in Green Bay. Louis came to live with the family in Chicago after that.</p>
+    <p>This is half of where you come from on your mother's side. Junk and scrap and a horse and wagon and an only daughter who fell off a porch and never let it slow her down.</p></div>
+    </section>
+    <section class="chapter story-chapter subsequent">
+      <p class="chapter-number">Story 12</p>
+      <h2>Rachel Beilen</h2>
+      <p class="subtitle">The Eldest, Born 1865</p>
+      <div class="story-body"><p>Rachel was the eldest of David Moses and Hinda Ressman's children — born in 1865 in Russia, died in Chicago in 1954 at the age of eighty-nine.</p>
+    <p>She had married, in Russia, a man named David Beilen, whose father was <em>a farmer and the mayor of Kolonia (or Bohakuv).</em> Her parents had not approved of the match — David was in poor health — but she married him anyway.</p>
+    <p>David came to America in 1902, a year before Rachel and the children. He went to work for Ed Ressman in Appleton, but didn't like it there, so he moved back to Chicago and worked as a tailor. He went to Denver, hoping the dry air would help his lungs. It didn't. He died there a year later — <em>of tuberculosis of the throat, at the age of thirty-eight.</em></p>
+    <p>Rachel was left in Chicago with seven children. They were Esther, Bessie, Eva, Joseph, Bertha, Sadie, and Abram. The youngest, Abram, was the only one born in America. When the children were in school, Joseph decided that the family name <em>Beilen</em> ought to be spelled the way it was pronounced, so the teachers could read it. They became the <em>Bailins</em>, and there are Bailins in this family ever since.</p>
+    <p>Rachel scrubbed floors for fifty cents apiece. She lived to see grandchildren and great-grandchildren. She is buried in Chicago.</p></div>
+    </section>
+
+  <section class="chapter">
+    <p class="chapter-number">Chapter 5</p>
+    <h2>Image Plates</h2>
+    
+    <figure class="plate">
+      <img src="Pictures/HINDA PESSIN RESSMAN and her husband, DAVID RESSMAN.png" alt="Hinda Pessin &amp; David Moses Ressman">
+      <figcaption>
+        <span>Portrait</span>
+        <strong>Hinda Pessin &amp; David Moses Ressman</strong>
+        The immigrant generation at the center of the Ressman family record.
+      </figcaption>
+    </figure>
+    <figure class="plate">
+      <img src="Pictures/Marcus_and_Silvia_Slafer.jpg" alt="Marcus &amp; Sylvia Slafer">
+      <figcaption>
+        <span>Portrait</span>
+        <strong>Marcus &amp; Sylvia Slafer</strong>
+        Sylvia Ressman and Marcus Slafer, the Chicago link between Ressman and Miller.
+      </figcaption>
+    </figure>
+    <figure class="plate">
+      <img src="Pictures/Silvia slafer and Ruth Ressman.jpg" alt="Sylvia &amp; Ruth Ressman">
+      <figcaption>
+        <span>Sisters</span>
+        <strong>Sylvia &amp; Ruth Ressman</strong>
+        Leon and Rose Ressman’s daughters, remembered as part of a close household.
+      </figcaption>
+    </figure>
+    <figure class="plate">
+      <img src="Pictures/Bareman Street Synagogue 1923.avif" alt="Bateman Street Synagogue, 1923">
+      <figcaption>
+        <span>Synagogue</span>
+        <strong>Bateman Street Synagogue, 1923</strong>
+        Moses Montefiore Congregation built this Appleton synagogue at Atlantic and Bateman streets in 1922 and dedicated it on June 10, 1923.
+      </figcaption>
+    </figure>
+    <figure class="plate">
+      <img src="Pictures/Isadore_Bahcall.jpg" alt="Isadore Bahcall">
+      <figcaption>
+        <span>Portrait</span>
+        <strong>Isadore Bahcall</strong>
+        Rebecca Ressman’s fiance, later husband, and treasurer of Moses Montefiore Congregation when it was officially founded in 1903.
+      </figcaption>
+    </figure>
+    <figure class="plate">
+      <img src="Pictures/David-Bailin Eagle Supply and Plastics.jpg" alt="David Bailin at Eagle Supply &amp; Plastics">
+      <figcaption>
+        <span>Business</span>
+        <strong>David Bailin at Eagle Supply &amp; Plastics</strong>
+        A later Appleton business branch growing out of the Bahcall/Bailin scrap-and-supply tradition.
+      </figcaption>
+    </figure>
+    <figure class="plate">
+      <img src="Pictures/Acme Manufacturing chicago.jpg" alt="Acme Manufacturing, Chicago">
+      <figcaption>
+        <span>Business</span>
+        <strong>Acme Manufacturing, Chicago</strong>
+        The family’s first American manufacturing venture, remembered as ambitious and short-lived.
+      </figcaption>
+    </figure>
+    <figure class="plate">
+      <img src="Pictures/Allan Rusky newspaper article.jpg" alt="Alan Rusky at Ressman’s Clothiers">
+      <figcaption>
+        <span>Clipping</span>
+        <strong>Alan Rusky at Ressman’s Clothiers</strong>
+        A newspaper snapshot from the Appleton clothing-store branch.
+      </figcaption>
+    </figure>
+    <figure class="plate">
+      <img src="Pictures/First Ramada inn Flagstaff, AZ.jpg" alt="First Ramada Inn, Flagstaff">
+      <figcaption>
+        <span>Business</span>
+        <strong>First Ramada Inn, Flagstaff</strong>
+        Ezra F. Ressman was one of Ramada’s original investors. The first Ramada opened on Route 66 in Flagstaff in 1954.
+      </figcaption>
+    </figure>
+    <figure class="plate">
+      <img src="Pictures/Joseph Ressman Selective Service Registration.png" alt="Joseph Ressman Selective Service Registration">
+      <figcaption>
+        <span>Record</span>
+        <strong>Joseph Ressman Selective Service Registration</strong>
+        A preserved registration record from the family archive.
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="chapter">
+    <p class="chapter-number">Chapter 6</p>
+    <h2>Hands That Built</h2>
+    
+    <article class="business-entry">
+      <img src="Pictures/appleton WI.jpg" alt="Historic street scene in Appleton Wisconsin">
+      <div>
+        <p class="meta">1880s · Appleton, Wisconsin</p>
+        <h3>Edward Ressman's Scrap Yard</h3>
+        <p>Founded by David Moses's brother Ed, the first Ressman in America. Took in his niece's fiancé Isadore Bahcall as an employee.</p>
+        <p class="tag">Became I. Bahcall, Inc.</p>
+      </div>
+    </article>
+    <article class="business-entry">
+      <img src="Pictures/Acme Manufacturing chicago.jpg" alt="Acme Manufacturing building in Chicago">
+      <div>
+        <p class="meta">1903 · Chicago, Illinois</p>
+        <h3>Acme Manufacturing</h3>
+        <p>The first family business. The Ressman brothers all worked in it, making parts of men's suits. Failed quickly due to family infighting — but every brother went on to a tailoring career.</p>
+        <p class="tag">The first attempt</p>
+      </div>
+    </article>
+    <article class="business-entry">
+      <img src="Pictures/College Avenue Apple Wi 1964.jpg" alt="College Avenue in Appleton Wisconsin in 1964">
+      <div>
+        <p class="meta">1909 · Pontiac, Illinois</p>
+        <h3>Leon's Cleaning &amp; Dyeing</h3>
+        <p>Your great-grandfather Leon's first business. Operated by hand at first, then a real plant on Main Street. Closed when gasoline fumes made him sick.</p>
+        <p class="tag">Closed for his health</p>
+      </div>
+    </article>
+    <article class="business-entry">
+      <img src="Pictures/Allan Rusky newspaper article.jpg" alt="Newspaper article featuring Alan Rusky at Ressman's Clothiers">
+      <div>
+        <p class="meta">1914 · Appleton, Wisconsin</p>
+        <h3>Ressman's Clothiers</h3>
+        <p>Founded by Harry Ressman and Sarah Spector on their honeymoon. Still owned and operated today by Harry's grandson Alan Rusky and his wife Annette.</p>
+        <p class="tag">Still open after 110+ years</p>
+      </div>
+    </article>
+    <article class="business-entry">
+      <img src="Pictures/appleton WI.jpg" alt="Historic Appleton Wisconsin street scene">
+      <div>
+        <p class="meta">1920s · Appleton, Wisconsin</p>
+        <h3>Bahcall Scrap Metal</h3>
+        <p>Inherited from Ed Ressman by his nephew-in-law Isadore Bahcall. Renamed I. Bahcall, Inc. Sold scrap, then new steel and rubber goods.</p>
+        <p class="tag">Three generations</p>
+      </div>
+    </article>
+    <article class="business-entry">
+      <img src="Pictures/Corner Snack Shop at Montrose and Lincoln.jpg" alt="Corner Snack Shop at Montrose and Lincoln in Chicago">
+      <div>
+        <p class="meta">1924 · 3253 W. Montrose Ave, Chicago</p>
+        <h3>Leon's Tailor Shop</h3>
+        <p>After the Green Bay clothing store failed in the Depression, Leon opened this small tailor shop in Chicago. The family lived in an apartment behind the store.</p>
+        <p class="tag">Where Sylvia grew up</p>
+      </div>
+    </article>
+    <article class="business-entry">
+      <img src="Pictures/College Avenue Apple Wi 1964.jpg" alt="College Avenue in Appleton Wisconsin in 1964">
+      <div>
+        <p class="meta">1930s · Appleton, Wisconsin</p>
+        <h3>Sander's Rose Shop</h3>
+        <p>A ladies' clothing store owned by Esther 'Jere' Ressman's husband Sander Rosenblum, an immigrant from Sweden. Jere helped run the store.</p>
+        <p class="tag">Run by Esther 'Jere'</p>
+      </div>
+    </article>
+    <article class="business-entry">
+      <img src="Pictures/David-Bailin Eagle Supply and Plastics.jpg" alt="David Bailin seated at his desk at Eagle Supply and Plastics">
+      <div>
+        <p class="meta">1958 · Appleton, Wisconsin</p>
+        <h3>Eagle Supply &amp; Plastics</h3>
+        <p>Spun off from I. Bahcall, Inc. by Joseph Bailin's son David and son-in-law Ivor Lewis. A continuation of the scrap-and-supply tradition into a new generation.</p>
+        <p class="tag">The next generation</p>
+      </div>
+    </article>
+    <article class="business-entry">
+      <img src="Pictures/First Ramada inn Flagstaff, AZ.jpg" alt="First Ramada Inn in Flagstaff Arizona">
+      <div>
+        <p class="meta">1954 · Flagstaff, Arizona</p>
+        <h3>Ezra Ressman &amp; Ramada</h3>
+        <p>Ezra F. Ressman was one of Ramada's original investors. The first Ramada opened on Route 66 in Flagstaff, Arizona in 1954.</p>
+        <p class="tag">Original investor</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="chapter">
+    <p class="chapter-number">Chapter 7</p>
+    <h2>Records & Corrections</h2>
+    <div class="grid-two">
+      <figure class="plate">
+        <img src="Pictures/Joseph Ressman Selective Service Registration.png" alt="Joseph Ressman Selective Service Registration">
+        <figcaption><span>Record</span><strong>Joseph Ressman Selective Service Registration</strong>A preserved registration record from the family archive.</figcaption>
+      </figure>
+      <div>
+        <p class="research-note">Leon Ressman should be treated as the youngest surviving child of David Moses Ressman and Hinda Pessin.</p><p class="research-note">David Moses and Hinda had thirteen children; the scanned history names seven surviving children.</p><p class="research-note">Joseph Bailin and Joe Bailin are likely one person, based on the expanded Rachel Beilen/Bailin branch.</p><p class="research-note">Abram Ressman’s branch differs between the older tree and the scanned history and needs original-record reconciliation.</p><p class="research-note">Ezra F. Ressman was one of Ramada’s original investors; the first Ramada opened on Route 66 in Flagstaff in 1954.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <p class="chapter-number">Chapter 8</p>
+    <h2>People Directory</h2>
+    <div class="directory">
+      
+      <section class="directory-group">
+        <h3>Ressman</h3>
+        
+          <article class="directory-person">
+            <strong>Joseph Ressman</strong>
+            <span>Deceased</span>
+            <p>Earliest known Ressman ancestor in the working tree.</p>
+          </article>
+          <article class="directory-person">
+            <strong>David Moses Ressman</strong>
+            <span>1849–1925</span>
+            <p>Patriarch. Tailor in Nikolief/Nikolaev, Russia; immigrated through Baltimore in 1903.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Edward 'Ed' Ressman</strong>
+            <span>1841–1905</span>
+            <p>David Moses's brother. First Ressman in America; conducted minyans and religious services in his Appleton home.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Ida Ressman</strong>
+            <span>Deceased</span>
+            <p>David Moses and Ed's sister; died in Europe and left a daughter named Rose.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Sonya Hirshkovitz Ressman</strong>
+            <span>?</span>
+            <p>Ed Ressman's wife.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Rachel Ressman Beilen/Bailin</strong>
+            <span>1865–1954</span>
+            <p>Eldest daughter. Married David Beilen; mother of the Bailin branch.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Joseph Ressman</strong>
+            <span>1867/1873–1949</span>
+            <p>Son. Married Jennie Joseph; father of seven daughters.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Abram Ressman</strong>
+            <span>Dates to verify</span>
+            <p>Son. Tailor in Odessa; married Celia, then Carrie Cohen.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Louis Ressman</strong>
+            <span>1882–1969</span>
+            <p>Son. Married Ida Cohen. Four children.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Rebecca Ressman Bahcall</strong>
+            <span>1881–1973</span>
+            <p>Daughter. Gave her ticket to fiancé Isadore Bahcall.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Harry Ressman</strong>
+            <span>1885/1886–1976</span>
+            <p>Son. Founded Ressman's Clothiers in Appleton.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Leon Ressman</strong>
+            <span>1890–1971</span>
+            <p>Youngest surviving son. Lois's maternal grandfather.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Sarah Spector Ressman</strong>
+            <span>?</span>
+            <p>Harry's wife. Met him at Hart, Schaffner &amp; Marx.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Diana Ressman Rusky</strong>
+            <span>1910–?</span>
+            <p>Harry &amp; Sarah's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Esther 'Jere' Ressman Rosenblum</strong>
+            <span>1914–?</span>
+            <p>Harry &amp; Sarah's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Alan Rusky</strong>
+            <span>1942–</span>
+            <p>Diana's son. Owner of Ressman's Clothiers, Appleton.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Annette Baron Rusky</strong>
+            <span>?</span>
+            <p>Alan Rusky's wife. Works in Ressman's Clothiers.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Ruth Ressman Leavitt</strong>
+            <span>1912–2013</span>
+            <p>Leon &amp; Rose's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Ezra F. Ressman</strong>
+            <span>1915/1916–1969</span>
+            <p>Leon &amp; Rose's son. Lawyer in Chicago and one of Ramada's original investors.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Jennie Joseph Ressman</strong>
+            <span>1872–1932</span>
+            <p>Joseph Ressman's wife. Niece of Rachel's mother-in-law.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Lottie Ressman Burstein</strong>
+            <span>?</span>
+            <p>Joseph &amp; Jennie's daughter. Lived in Neenah, WI.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Pauline Ressman Berns</strong>
+            <span>?</span>
+            <p>Joseph &amp; Jennie's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Rose Ressman Marcus</strong>
+            <span>?</span>
+            <p>Joseph &amp; Jennie's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Flora Ressman Richman</strong>
+            <span>?</span>
+            <p>Joseph &amp; Jennie's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Dorothy Ressman Abelman</strong>
+            <span>1903–1970</span>
+            <p>Joseph &amp; Jennie's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Celia Ressman Less</strong>
+            <span>?</span>
+            <p>Joseph &amp; Jennie's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Faye Ressman</strong>
+            <span>?</span>
+            <p>Joseph &amp; Jennie's youngest. Never married.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Joseph Burstein</strong>
+            <span>?</span>
+            <p>Lottie Ressman's husband; lived in Neenah, Wisconsin.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Myrtle Burstein</strong>
+            <span>1917–1974</span>
+            <p>Lottie and Joseph Burstein's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Victor Burstein</strong>
+            <span>1919–</span>
+            <p>Lottie and Joseph Burstein's son; foundry owner and former mayor of Albion, Michigan.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Meyer Lewis Burstein</strong>
+            <span>1923–</span>
+            <p>Lottie and Joseph Burstein's son; economist.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Phillip Berns</strong>
+            <span>?</span>
+            <p>Pauline Ressman's husband; retail clothing salesman.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Robert Berns</strong>
+            <span>?</span>
+            <p>Pauline and Phillip Berns's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Marvin Berns</strong>
+            <span>1926–</span>
+            <p>Pauline and Phillip Berns's son; antique dealer.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Alan Marcus</strong>
+            <span>?</span>
+            <p>Rose Ressman's husband; tailor.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Richard Marcus</strong>
+            <span>1935–</span>
+            <p>Rose and Alan Marcus's son; insurance business in Los Angeles.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Harry Richman</strong>
+            <span>?</span>
+            <p>Flora Ressman's husband; salesman.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Byron Richman</strong>
+            <span>1923–</span>
+            <p>Flora and Harry Richman's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Morris Abelman</strong>
+            <span>1901–1959</span>
+            <p>Dorothy Ressman's husband; wholesale produce business.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Joan Abelman Goldberg</strong>
+            <span>1935–</span>
+            <p>Dorothy and Morris Abelman's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Milton Less</strong>
+            <span>?</span>
+            <p>Celia Ressman's husband; bookkeeper.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Howard Less</strong>
+            <span>1926–</span>
+            <p>Celia and Milton Less's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Donald Less</strong>
+            <span>1930–</span>
+            <p>Celia and Milton Less's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Carrie Cohen Ressman</strong>
+            <span>?</span>
+            <p>Abram's wife (a widow with a daughter).</p>
+          </article>
+          <article class="directory-person">
+            <strong>Mabel Clorfene</strong>
+            <span>?</span>
+            <p>Carrie's daughter from previous marriage. Married Henry Clorfene.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Betty Ressman Morse</strong>
+            <span>?</span>
+            <p>Abram &amp; Carrie's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Ida Cohen Ressman</strong>
+            <span>?</span>
+            <p>Louis Ressman's wife.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Jeanette Ressman Tenenbaum</strong>
+            <span>?</span>
+            <p>Louis &amp; Ida's daughter. Teacher.</p>
+          </article>
+          <article class="directory-person">
+            <strong>David Ressman</strong>
+            <span>?</span>
+            <p>Louis &amp; Ida's son. Hairdresser in Chicago.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Esther Ressman Rifkin</strong>
+            <span>?</span>
+            <p>Louis &amp; Ida's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Harry Ressman (Louis's son)</strong>
+            <span>?</span>
+            <p>Louis &amp; Ida's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Samuel Tenenbaum</strong>
+            <span>?</span>
+            <p>Jeanette Ressman's husband; hardware-store owner.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Hinda Sue Tenenbaum Gilbert</strong>
+            <span>1938–</span>
+            <p>Jeanette and Samuel Tenenbaum's daughter; systems analyst.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Carole Ruth Tenenbaum Rubenstein</strong>
+            <span>1940–</span>
+            <p>Jeanette and Samuel Tenenbaum's daughter; formerly a bacteriologist.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Jeanne Fox Ressman</strong>
+            <span>?</span>
+            <p>David Ressman's wife.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Richard Bruce Ressman</strong>
+            <span>1941–</span>
+            <p>David and Jeanne Ressman's son; orthopedic surgeon.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Lynn Roberta Ressman Simon</strong>
+            <span>1944–</span>
+            <p>David and Jeanne Ressman's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Nancy Lee Ressman Reil</strong>
+            <span>1952–</span>
+            <p>David and Jeanne Ressman's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Hyman B. Rifkin</strong>
+            <span>?</span>
+            <p>Esther's husband. Wholesale auto parts, Chicago.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Bennett L. Rifkin</strong>
+            <span>1942–</span>
+            <p>Esther &amp; Hyman's son. Delta Airlines pilot.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Dyann Rifkin Linger</strong>
+            <span>1946–</span>
+            <p>Esther &amp; Hyman's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Scott Rifkin</strong>
+            <span>1952–</span>
+            <p>Esther &amp; Hyman's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Helen Shimelforb Ressman</strong>
+            <span>?</span>
+            <p>Harry's wife (Louis's son).</p>
+          </article>
+          <article class="directory-person">
+            <strong>Laura B. Ressman Fleming</strong>
+            <span>1950–</span>
+            <p>Harry &amp; Helen's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Anne L. Ressman</strong>
+            <span>1955–</span>
+            <p>Harry &amp; Helen's daughter. Insurance rater.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Douglas Ressman</strong>
+            <span>1956–</span>
+            <p>Harry &amp; Helen's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Maurice Leavitt</strong>
+            <span>?</span>
+            <p>Ruth Ressman's husband. Dental supply business.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Marilyn Leavitt Moltz</strong>
+            <span>1937–</span>
+            <p>Ruth &amp; Maurice's daughter. High school teacher.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Lynda Leavitt Klein</strong>
+            <span>1941–</span>
+            <p>Ruth &amp; Maurice's daughter.</p>
+          </article>
+      </section>
+      <section class="directory-group">
+        <h3>Pessin</h3>
+        
+          <article class="directory-person">
+            <strong>Hinda Pessin Ressman</strong>
+            <span>1850–1937</span>
+            <p>Matriarch. Daughter of Harry Pessin and Esther Skolnick; crossed with David Moses.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Aaron Harry / Harry Pessin</strong>
+            <span>Deceased</span>
+            <p>Hinda's father; described in the family notes as a chazan and shochet.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Esther Skolnick Pessin</strong>
+            <span>Deceased</span>
+            <p>Hinda's mother.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Nathan Pessin</strong>
+            <span>Deceased</span>
+            <p>Hinda's brother; remembered as a magid, or storyteller.</p>
+          </article>
+      </section>
+      <section class="directory-group">
+        <h3>Vanetsky</h3>
+        
+          <article class="directory-person">
+            <strong>Louis Vanetsky</strong>
+            <span>1868–1930</span>
+            <p>Junk peddler in Englewood, Chicago. Rose's father.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Machla / Mishila Mary Rifkin Vanetsky</strong>
+            <span>1870–deceased</span>
+            <p>Rose's mother. Died after gallbladder surgery.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Rose Vanetsky Ressman</strong>
+            <span>1889–1975</span>
+            <p>Only surviving child of Louis &amp; Machla. Married Leon Ressman.</p>
+          </article>
+      </section>
+      <section class="directory-group">
+        <h3>Bailin / Beilen</h3>
+        
+          <article class="directory-person">
+            <strong>David Beilen</strong>
+            <span>?–1905</span>
+            <p>Rachel's husband. Died of tuberculosis at 38.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Esther Bailin Levy</strong>
+            <span>1891–?</span>
+            <p>Rachel &amp; David's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Bessie Bailin Kritzberg</strong>
+            <span>1892–1977</span>
+            <p>Rachel &amp; David's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Eva Bailin Herman</strong>
+            <span>1895–1951</span>
+            <p>Rachel &amp; David's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Joseph Bailin</strong>
+            <span>1897–1958</span>
+            <p>Rachel &amp; David's son. Renamed family Beilen → Bailin.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Bertha Bailin Goldstein</strong>
+            <span>1900–?</span>
+            <p>Rachel &amp; David's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Sadie Bailin</strong>
+            <span>1902–1969</span>
+            <p>Rachel &amp; David's daughter. Lived with lifelong intellectual disability after measles in infancy.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Abram Bailin</strong>
+            <span>1905–~1956</span>
+            <p>Rachel &amp; David's youngest, only one born in America.</p>
+          </article>
+          <article class="directory-person">
+            <strong>David M. Bailin</strong>
+            <span>1927–</span>
+            <p>Joseph's son. Eagle Supply &amp; Plastics.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Helen Bailin Lewis</strong>
+            <span>1929–</span>
+            <p>Joseph's daughter. Married Ivor Lewis of Dublin.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Larry Jon Bailin</strong>
+            <span>1952–</span>
+            <p>David's son. Attorney in Tampa.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Stuart Lee Bailin</strong>
+            <span>1955–</span>
+            <p>David's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Jared 'Jerry' Hugh Bailin</strong>
+            <span>1958–</span>
+            <p>David's son. Works at Ressman's Clothiers.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Jo Ann Bailin</strong>
+            <span>1962–</span>
+            <p>David's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Shaindl Bailin</strong>
+            <span>Died in infancy</span>
+            <p>First child of Rachel Ressman and David Beilen/Bailin.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Alexander / Alex Levy</strong>
+            <span>1889–1967</span>
+            <p>Esther Bailin's husband; hat maker.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Frank Kritzberg</strong>
+            <span>1888–1944</span>
+            <p>Bessie Bailin's husband; printer.</p>
+          </article>
+          <article class="directory-person">
+            <strong>David Herman</strong>
+            <span>?</span>
+            <p>Eva Bailin's husband; milkman.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Jeanette Leibowitz Bailin</strong>
+            <span>?</span>
+            <p>Joseph Bailin's wife and friend of Eva Bailin.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Harry Goldstein</strong>
+            <span>?</span>
+            <p>Bertha Bailin's husband; advertising executive and later grocer.</p>
+          </article>
+          <article class="directory-person">
+            <strong>David 'Davey' Kritzberg</strong>
+            <span>1913–</span>
+            <p>Bessie and Frank Kritzberg's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Mildred Kritzberg Sherr</strong>
+            <span>1927–</span>
+            <p>Bessie and Frank Kritzberg's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Violet Schram Bailin</strong>
+            <span>?</span>
+            <p>David M. Bailin's wife; met him at the University of Wisconsin.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Ivor Lewis</strong>
+            <span>?</span>
+            <p>Helen Bailin's husband; native of Dublin and partner in Eagle Supply &amp; Plastics.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Howard 'Ollie' Leslie</strong>
+            <span>1914–</span>
+            <p>Esther Bailin's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Shirley Levy Kaplan</strong>
+            <span>1917–</span>
+            <p>Esther Bailin's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>David 'Buddy' Levy</strong>
+            <span>1921–</span>
+            <p>Esther Bailin's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Robert Kaplan</strong>
+            <span>1950–</span>
+            <p>Shirley &amp; Bernard's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Susan Kaplan</strong>
+            <span>1946–</span>
+            <p>Shirley &amp; Bernard's daughter.</p>
+          </article>
+      </section>
+      <section class="directory-group">
+        <h3>Bahcall</h3>
+        
+          <article class="directory-person">
+            <strong>Isadore Bahcall</strong>
+            <span>1880–1963</span>
+            <p>Rebecca's husband. Founded I. Bahcall, Inc.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Rose Bahcall Rosenzweig</strong>
+            <span>1904–</span>
+            <p>Rebecca &amp; Isadore's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Edward Bahcall</strong>
+            <span>1907–1961</span>
+            <p>Rebecca &amp; Isadore's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Sarah 'Bebe' Bahcall Balkansky</strong>
+            <span>1909–</span>
+            <p>Rebecca &amp; Isadore's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Walter Rosenzweig</strong>
+            <span>1903–1967</span>
+            <p>Rose's husband. From Bessemer, Michigan.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Donna Rosenzweig Ziven</strong>
+            <span>1929–</span>
+            <p>Rose &amp; Walter's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Richard Rosenzweig</strong>
+            <span>1935–</span>
+            <p>Rose &amp; Walter's son. Exec VP of Playboy Enterprises.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Dennis Bahcall</strong>
+            <span>1934–</span>
+            <p>Edward's son. Family business.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Bernard Balkansky</strong>
+            <span>1905–1979</span>
+            <p>Bebe's husband. Manitowoc, Wisconsin.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Ruth Kahn Bahcall</strong>
+            <span>1908–1952</span>
+            <p>Edward Bahcall's wife.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Naomi Cohen Bahcall</strong>
+            <span>?</span>
+            <p>Dennis Bahcall's wife, from Appleton.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Ruth Bahcall Shayne</strong>
+            <span>1955–</span>
+            <p>Dennis and Naomi Bahcall's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Michael Bahcall</strong>
+            <span>1957–</span>
+            <p>Dennis and Naomi Bahcall's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Lee Bahcall</strong>
+            <span>1958–</span>
+            <p>Dennis and Naomi Bahcall's child.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Jerre Balkansky</strong>
+            <span>1933–1941</span>
+            <p>Bebe and Bernard Balkansky's child; died at age eight.</p>
+          </article>
+          <article class="directory-person">
+            <strong>David Balkansky</strong>
+            <span>1937–</span>
+            <p>Bebe and Bernard Balkansky's son; worked for I. Bahcall, Inc.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Harlan Balkansky</strong>
+            <span>1944–</span>
+            <p>Bebe and Bernard Balkansky's son; worked for I. Bahcall, Inc.</p>
+          </article>
+      </section>
+      <section class="directory-group">
+        <h3>Miller / Malyn</h3>
+        
+          <article class="directory-person">
+            <strong>Isreal Miller</strong>
+            <span>before 1845–?</span>
+            <p>Joel's great-grandfather. Lithuania.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Harris Nathan Miller</strong>
+            <span>1863–1946</span>
+            <p>Joel's grandfather. Lithuania → New Kensington, PA.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Mary Ethel Fairchild Rosenberg Miller</strong>
+            <span>before 1880–~1923</span>
+            <p>Harris's wife. Born in England.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Morris Louis Miller</strong>
+            <span>1900–?</span>
+            <p>Harris's son. Joel's father.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Freida Rubin Miller</strong>
+            <span>?</span>
+            <p>Morris Louis's wife. Joel's mother.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Marilyn Ethel Miller Summer</strong>
+            <span>1928–</span>
+            <p>Joel's sister.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Joel F. Miller</strong>
+            <span>1934–</span>
+            <p>DAD. Married Lois October 21, 1972 in Chicago.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Maizie Lee Miller</strong>
+            <span>1973–</span>
+            <p>Lois &amp; Joel's eldest. Born Tel Aviv.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Russell Jasun Miller</strong>
+            <span>1978–</span>
+            <p>Lois &amp; Joel's son. Born Phoenix.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Michaela Diane Brune Miller</strong>
+            <span>?</span>
+            <p>Russell's wife. Mother of Jacob and Landon.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Ilene Davida Miller</strong>
+            <span>1980–</span>
+            <p>Lois &amp; Joel's youngest. Born Phoenix.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Jacob Shaw Miller</strong>
+            <span>June 19, 2013–</span>
+            <p>Russell &amp; Michaela's son. Lois's grandson.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Landon Andrew Miller</strong>
+            <span>Nov 5, 2014–</span>
+            <p>Russell &amp; Michaela's son. Lois's grandson.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Ozzie Boswell Miller</strong>
+            <span>c. 2009–2025</span>
+            <p>Lois's granddog and beloved family grandchild. Passed in 2025 at age 16.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Edith Gertrude Miller Malyn</strong>
+            <span>1898–1973</span>
+            <p>Joel's aunt. Married Morris Malyn.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Leah Miller</strong>
+            <span>1896–</span>
+            <p>Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Benjamin Miller</strong>
+            <span>1902–</span>
+            <p>Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.</p>
+          </article>
+          <article class="directory-person">
+            <strong>David Miller</strong>
+            <span>1904–</span>
+            <p>Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Sarah Miller</strong>
+            <span>1906–</span>
+            <p>Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Katherine 'Katie/Kay' Miller</strong>
+            <span>1906–</span>
+            <p>Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Carl Julius Miller</strong>
+            <span>1919–</span>
+            <p>Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Nathan Malinovsky</strong>
+            <span>Deceased</span>
+            <p>Earliest named ancestor in the related Malinovsky/Malyn pages.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Israel Malinovsky</strong>
+            <span>1858–1921</span>
+            <p>Born in Plotzk, Poland/Russia; married Rebeca Lefchyk.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Rebeca Lefchyk Malinovsky</strong>
+            <span>1853–1923</span>
+            <p>Israel Malinovsky's wife.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Morris Malyn (Malinovsky)</strong>
+            <span>1892–1939</span>
+            <p>Edith's husband. From Plotzk, Poland.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Max Malyn / Malinovsky</strong>
+            <span>?</span>
+            <p>Child of Israel Malinovsky and Rebeca Lefchyk.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Mary Malyn / Malinovsky</strong>
+            <span>?</span>
+            <p>Child of Israel Malinovsky and Rebeca Lefchyk.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Sam Malyn / Malinovsky</strong>
+            <span>?</span>
+            <p>Child of Israel Malinovsky and Rebeca Lefchyk.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Herbert Malyn</strong>
+            <span>1921–</span>
+            <p>Edith &amp; Morris's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Irving Malyn</strong>
+            <span>1922–</span>
+            <p>Edith &amp; Morris's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Milton Robert Malyn</strong>
+            <span>1927–</span>
+            <p>Edith &amp; Morris's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Albert Malyn</strong>
+            <span>1930–</span>
+            <p>Edith &amp; Morris's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Michael Harris Malyn</strong>
+            <span>1947–</span>
+            <p>Herbert's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Marshall Joseph Eidinger</strong>
+            <span>1944–</span>
+            <p>Joel's cousin (via aunt Katherine).</p>
+          </article>
+          <article class="directory-person">
+            <strong>Harris Miller</strong>
+            <span>1951–</span>
+            <p>Joel's cousin (via uncle Carl Julius).</p>
+          </article>
+      </section>
+      <section class="directory-group">
+        <h3>Slafer</h3>
+        
+          <article class="directory-person">
+            <strong>Sylvia Ressman Slafer</strong>
+            <span>1910–2006</span>
+            <p>Leon &amp; Rose's daughter. Lois's mother.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Marcus Slaferman / Slafer</strong>
+            <span>1907/1909–1983</span>
+            <p>Sylvia's husband. Dress pattern grader. Lois's father.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Howard Slafer</strong>
+            <span>1939–</span>
+            <p>Sylvia &amp; Marcus's son. Salesman for Minolta.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Lois Ann Slafer Miller</strong>
+            <span>1946–</span>
+            <p>MOM. Sylvia &amp; Marcus's daughter.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Linda McNeil Slafer</strong>
+            <span>?</span>
+            <p>Howard's first wife.</p>
+          </article>
+          <article class="directory-person">
+            <strong>James Slafer</strong>
+            <span>1963–</span>
+            <p>Howard &amp; Linda's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Richard Slafer</strong>
+            <span>1966–</span>
+            <p>Howard &amp; Linda's son.</p>
+          </article>
+          <article class="directory-person">
+            <strong>Ilana Slafer</strong>
+            <span>1970–</span>
+            <p>Howard &amp; Linda's daughter.</p>
+          </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="colophon">
+    <p class="kicker">Generated From</p>
+    <p>Lois_Family_Tree.html</p>
+    <p>Prepared as a print-ready family book source.</p>
+  </section>
+</main>
+</body>
+</html>
