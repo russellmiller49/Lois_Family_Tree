@@ -18,6 +18,9 @@
   --sepia-light: #7a5638;
   --burgundy: #7d2e2e;
   --burgundy-deep: #5a1f1f;
+  --evergreen: #31483f;
+  --blue-ink: #24374c;
+  --copper: #9a5a35;
   --gold: #a17a2c;
   --gold-light: #c9a557;
   --ink: #2a1c10;
@@ -110,7 +113,7 @@ nav.topnav {
 
 .nav-links {
   display: flex;
-  gap: 1.8rem;
+  gap: 1.35rem;
   font-family: 'Cormorant SC', serif;
   font-size: 0.85rem;
   letter-spacing: 0.12em;
@@ -148,16 +151,20 @@ nav.topnav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
+  padding: 5rem 2rem 4rem;
   position: relative;
-  text-align: center;
+  text-align: left;
 }
 
 .hero-frame {
   position: relative;
-  padding: 5rem 4rem;
-  max-width: 900px;
+  padding: clamp(2.25rem, 5vw, 4.25rem);
+  max-width: 1180px;
   width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(290px, 0.72fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
 }
 
 .hero-frame::before {
@@ -199,11 +206,16 @@ nav.topnav {
   animation: fadeInDown 1.4s 0.2s ease both;
 }
 
+.hero-copy {
+  position: relative;
+  z-index: 3;
+}
+
 .hero-title {
   font-family: 'Playfair Display', serif;
   font-weight: 800;
   font-style: italic;
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-size: 5rem;
   line-height: 1.05;
   color: var(--sepia-darkest);
   margin: 1rem 0;
@@ -224,7 +236,7 @@ nav.topnav {
   width: 80px;
   height: 1px;
   background: var(--burgundy);
-  margin: 2rem auto;
+  margin: 2rem 0;
   position: relative;
   animation: expandRule 1.4s 0.8s ease both;
 }
@@ -248,7 +260,7 @@ nav.topnav {
   font-style: italic;
   color: var(--sepia);
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0;
   line-height: 1.5;
   animation: fadeIn 1.4s 1s ease both;
 }
@@ -261,6 +273,73 @@ nav.topnav {
   color: var(--gold);
   text-transform: uppercase;
   animation: fadeIn 1.4s 1.4s ease both;
+}
+
+.hero-media-stack {
+  position: relative;
+  z-index: 3;
+  min-height: 520px;
+}
+
+.hero-photo {
+  position: absolute;
+  background: var(--parchment-light);
+  border: 1px solid rgba(42, 24, 16, 0.18);
+  box-shadow: 0 22px 55px rgba(42, 24, 16, 0.28);
+  padding: 0.65rem 0.65rem 1rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-photo:hover {
+  transform: translateY(-5px) rotate(var(--tilt, 0deg));
+  box-shadow: 0 28px 65px rgba(42, 24, 16, 0.33);
+}
+
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.12) contrast(1.04);
+}
+
+.hero-photo figcaption {
+  font-family: 'Caveat', cursive;
+  font-size: 1.05rem;
+  color: var(--sepia-dark);
+  line-height: 1.1;
+  margin-top: 0.55rem;
+  text-align: center;
+}
+
+.hero-photo.primary {
+  width: min(92%, 410px);
+  height: 340px;
+  top: 0;
+  right: 0;
+  --tilt: 1deg;
+  transform: rotate(1deg);
+  z-index: 1;
+}
+
+.hero-photo.secondary {
+  width: min(70%, 285px);
+  height: 255px;
+  left: 0;
+  top: 235px;
+  --tilt: -3deg;
+  transform: rotate(-3deg);
+  z-index: 3;
+}
+
+.hero-photo.tertiary {
+  width: min(58%, 235px);
+  height: 260px;
+  right: 18px;
+  bottom: 0;
+  --tilt: 3deg;
+  transform: rotate(3deg);
+  z-index: 2;
 }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -290,7 +369,7 @@ section.story-section {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-style: italic;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: 3.25rem;
   line-height: 1.1;
   color: var(--sepia-darkest);
   margin-bottom: 1.5rem;
@@ -791,12 +870,34 @@ section.story-section {
 
 .business-card {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(180px, 260px) 1fr;
   gap: 2.5rem;
   padding: 2rem;
   background: rgba(248, 238, 216, 0.5);
   border-left: 3px solid var(--burgundy);
   position: relative;
+}
+
+.business-media {
+  min-height: 190px;
+  border: 1px solid rgba(42, 24, 16, 0.18);
+  background: rgba(42, 24, 16, 0.08);
+  overflow: hidden;
+  align-self: stretch;
+}
+
+.business-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  display: block;
+  object-fit: cover;
+  filter: sepia(0.16) contrast(1.04);
+  transition: transform 0.5s ease;
+}
+
+.business-card:hover .business-media img {
+  transform: scale(1.04);
 }
 
 .business-year {
@@ -806,7 +907,7 @@ section.story-section {
   color: var(--burgundy);
   font-weight: 700;
   line-height: 1;
-  align-self: center;
+  margin-bottom: 0.55rem;
 }
 
 .business-name {
@@ -833,6 +934,13 @@ section.story-section {
   font-size: 1.05rem;
   color: var(--sepia-dark);
   line-height: 1.5;
+}
+
+.business-desc a,
+.panel-copy a {
+  color: var(--burgundy);
+  text-decoration-color: rgba(125, 46, 46, 0.35);
+  text-underline-offset: 0.16em;
 }
 
 .business-tag {
@@ -924,7 +1032,6 @@ section.story-section {
   background: rgba(248, 238, 216, 0.5);
   padding: 1.2rem 1.4rem;
   border: 1px solid rgba(125, 46, 46, 0.15);
-  cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
 }
@@ -1093,14 +1200,283 @@ section.story-section {
   margin: 3rem 0;
 }
 
+/* === SURVIVING CHILDREN === */
+.children-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.child-card {
+  background: rgba(248, 238, 216, 0.62);
+  border: 1px solid rgba(125, 46, 46, 0.18);
+  padding: 1.4rem;
+  min-height: 190px;
+  position: relative;
+}
+
+.child-card::before {
+  content: attr(data-order);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+
+.child-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--sepia-darkest);
+  line-height: 1.15;
+  margin-bottom: 0.45rem;
+  padding-right: 2.5rem;
+}
+
+.child-dates {
+  font-family: 'Cinzel', serif;
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 0.85rem;
+}
+
+.child-note {
+  font-size: 1rem;
+  color: var(--sepia-dark);
+  line-height: 1.48;
+}
+
+.source-ribbon {
+  max-width: 760px;
+  margin: 3rem auto 0;
+  padding: 1.1rem 1.4rem;
+  border-left: 4px solid var(--evergreen);
+  background: rgba(49, 72, 63, 0.08);
+  color: var(--sepia-dark);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+/* === ARCHIVE / PHOTO WALL === */
+.archive-band {
+  background: linear-gradient(180deg, rgba(49, 72, 63, 0.08), rgba(232, 214, 176, 0.18));
+  border-top: 1px solid rgba(49, 72, 63, 0.16);
+  border-bottom: 1px solid rgba(49, 72, 63, 0.12);
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.archive-card {
+  grid-column: span 3;
+  background: rgba(248, 238, 216, 0.72);
+  border: 1px solid rgba(42, 24, 16, 0.18);
+  overflow: hidden;
+  box-shadow: 0 12px 26px rgba(60, 35, 15, 0.12);
+}
+
+.archive-card.wide { grid-column: span 6; }
+.archive-card.tall { grid-row: span 2; }
+
+.archive-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.archive-image {
+  aspect-ratio: 4 / 3;
+  background: rgba(42, 24, 16, 0.08);
+  overflow: hidden;
+}
+
+.archive-card.wide .archive-image { aspect-ratio: 16 / 9; }
+.archive-card.tall .archive-image { aspect-ratio: 3 / 4; }
+
+.archive-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: sepia(0.12) contrast(1.04);
+  transition: transform 0.5s ease;
+}
+
+.archive-link:hover .archive-image img {
+  transform: scale(1.035);
+}
+
+.archive-caption {
+  padding: 1rem 1.1rem 1.15rem;
+}
+
+.archive-type {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: var(--evergreen);
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+.archive-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.23rem;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--sepia-darkest);
+  margin-bottom: 0.4rem;
+}
+
+.archive-desc {
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--sepia-dark);
+}
+
+/* === TREE AND RECORDS === */
+.records-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(320px, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+.records-panel,
+.research-panel {
+  background: rgba(248, 238, 216, 0.58);
+  border: 1px solid rgba(125, 46, 46, 0.18);
+  padding: 1.5rem;
+}
+
+.record-card img {
+  display: block;
+  width: 100%;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(42, 24, 16, 0.12);
+}
+
+.panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--sepia-darkest);
+  margin-bottom: 0.8rem;
+}
+
+.panel-copy {
+  color: var(--sepia-dark);
+  font-size: 1rem;
+  line-height: 1.48;
+  margin-bottom: 1rem;
+}
+
+.records-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.record-card {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.record-card img {
+  max-height: 260px;
+}
+
+.research-panel {
+  border-left: 4px solid var(--blue-ink);
+}
+
+.research-list {
+  list-style: none;
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.research-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: var(--sepia-dark);
+  line-height: 1.45;
+}
+
+.research-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--blue-ink);
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   body { font-size: 17px; }
   
-  .hero-frame { padding: 3rem 1.5rem; }
+  .hero { padding: 2rem 1rem 3rem; }
+  .hero-frame {
+    padding: 2.5rem 1.35rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-title { font-size: 3.1rem; }
+  .section-title { font-size: 2.45rem; }
+  .hero-copy { text-align: center; }
+  .hero-rule { margin: 2rem auto; }
+  .hero-subtitle { margin: 0 auto; }
+  .hero-media-stack {
+    min-height: 350px;
+    width: min(100%, 420px);
+    margin: 0 auto;
+  }
+  .hero-photo.primary {
+    width: 78%;
+    height: 225px;
+  }
+  .hero-photo.secondary {
+    width: 56%;
+    height: 170px;
+    top: 175px;
+  }
+  .hero-photo.tertiary {
+    width: 48%;
+    height: 170px;
+    right: 0;
+  }
   
-  .nav-inner { padding: 0.7rem 1rem; gap: 1rem; }
-  .nav-links { gap: 1rem; font-size: 0.7rem; }
+  .nav-inner {
+    display: block;
+    padding: 0.7rem 1rem;
+  }
+  .nav-links {
+    gap: 1rem;
+    font-size: 0.7rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0.55rem 0 0.25rem;
+    scrollbar-width: thin;
+  }
+  .nav-links a { flex: 0 0 auto; }
   .nav-brand { font-size: 0.7rem; }
   
   section.story-section { padding: 4rem 1.2rem; }
@@ -1125,6 +1501,26 @@ section.story-section {
   .business-card {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+  .business-media,
+  .business-media img {
+    min-height: 210px;
+  }
+  .archive-grid {
+    grid-template-columns: 1fr;
+  }
+  .archive-card,
+  .archive-card.wide,
+  .archive-card.tall {
+    grid-column: auto;
+  }
+  .archive-card.tall .archive-image,
+  .archive-card.wide .archive-image,
+  .archive-image {
+    aspect-ratio: 4 / 3;
+  }
+  .records-layout {
+    grid-template-columns: 1fr;
   }
   
   .modal { padding: 2.5rem 1.8rem; }
@@ -1165,9 +1561,12 @@ section.story-section {
     <div class="nav-brand">Our Family Story</div>
     <div class="nav-links">
       <a href="#voyage">The Voyage</a>
+      <a href="#seven">Seven Children</a>
       <a href="#lineage">Your Bloodline</a>
       <a href="#stories">Stories</a>
+      <a href="#archive">Archive</a>
       <a href="#businesses">Businesses</a>
+      <a href="#records">Records</a>
       <a href="#everyone">Everyone</a>
     </div>
   </div>
@@ -1193,11 +1592,28 @@ section.story-section {
       <circle cx="3" cy="3" r="2" fill="currentColor"/>
     </svg>
     
-    <div class="hero-eyebrow">For Mom, with all our love —</div>
-    <h1 class="hero-title">Our Family<br><span class="ampersand">&</span> Where We Came From</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-subtitle">From a tailor's bench in Nikolief to the streets of Chicago, an ocean crossing on the Saxonia, and four generations to a woman in Phoenix, Arizona — every story leading, somehow, to you.</p>
-    <div class="hero-meta">A Mother's Day Chronicle</div>
+    <div class="hero-copy">
+      <div class="hero-eyebrow">For Mom, with all our love —</div>
+      <h1 class="hero-title">Our Family<br><span class="ampersand">&</span> Where We Came From</h1>
+      <div class="hero-rule"></div>
+      <p class="hero-subtitle">From a tailor's bench in Nikolief to Appleton storefronts, Chicago apartments, an ocean crossing on the Saxonia, and four generations to a woman in Phoenix, Arizona — every story leading, somehow, to you.</p>
+      <div class="hero-meta">A Mother's Day Chronicle</div>
+    </div>
+
+    <div class="hero-media-stack" aria-label="Family photographs">
+      <figure class="hero-photo primary">
+        <img src="Pictures/HINDA PESSIN RESSMAN and her husband, DAVID RESSMAN.png" alt="Hinda Pessin Ressman and David Moses Ressman portrait">
+        <figcaption>Hinda Pessin & David Moses Ressman</figcaption>
+      </figure>
+      <figure class="hero-photo secondary">
+        <img src="Pictures/Marcus_and_Silvia_Slafer.jpg" alt="Marcus and Sylvia Slafer seated together">
+        <figcaption>Marcus & Sylvia Slafer</figcaption>
+      </figure>
+      <figure class="hero-photo tertiary">
+        <img src="Pictures/Silvia slafer and Ruth Ressman.jpg" alt="Sylvia Slafer and Ruth Ressman standing together">
+        <figcaption>Sylvia & Ruth</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -1209,7 +1625,7 @@ section.story-section {
       <h2 class="section-title" style="margin-bottom: 0;">The Crossing</h2>
     </div>
     
-    <p class="dropcap">Long before any of us were here, there was a tailor in a Russian town called Nikolief who made uniforms for the Tsar's army. His name was David Moses Ressman, and he would whip his children to say their prayers, then have them help him sew. His wife was Hinda Pessin — daughter of a chazan and shogut, sister of a magid, a storyteller. She came from a learned family.</p>
+    <p class="dropcap">Long before any of us were here, there was a tailor in a Russian town called Nikolief, or Nikolaev, who made uniforms for the Tsar's army. His name was David Moses Ressman, and he would whip his children to say their prayers, then have them help him sew. His wife was Hinda Pessin — daughter of a chazan and shochet, sister of a magid, a storyteller. She came from a learned family.</p>
     
     <p>Hinda was deaf. She had been blinded in one eye as a girl when a kite struck her face during play. As a young woman, Cossacks had clubbed her about the head, and that may have had something to do with the deafness too. But she carried thirteen children, seven of whom lived, and she kept the family together long enough to send them, one by one, across the ocean to a country none of them had ever seen.</p>
     
@@ -1251,10 +1667,61 @@ section.story-section {
   </div>
 </section>
 
+<!-- SEVEN SURVIVING CHILDREN -->
+<section class="story-section survival-section" id="seven">
+  <div style="text-align: center; margin-bottom: 1rem;">
+    <div class="section-eyebrow">Chapter Two</div>
+    <h2 class="section-title">The Seven Who Survived</h2>
+    <p class="section-intro" style="margin: 1rem auto 0;">The detailed family knowledge document corrects an important point: David Moses and Hinda had thirteen children, but seven lived, and Leon belongs inside this core Ressman line.</p>
+  </div>
+
+  <div class="children-grid">
+    <article class="child-card fade-in" data-order="I">
+      <div class="child-name">Rachel Ressman Beilen/Bailin</div>
+      <div class="child-dates">1865–1954</div>
+      <p class="child-note">The eldest. Crossed in 1903 with her children after David Beilen came ahead; raised the Bailin branch in Chicago after his death.</p>
+    </article>
+    <article class="child-card fade-in" data-order="II">
+      <div class="child-name">Joseph Ressman</div>
+      <div class="child-dates">1867/1873–1949</div>
+      <p class="child-note">Married Jennie Joseph. Their seven daughters stayed mostly in the Chicago area, except Lottie, who settled in Neenah, Wisconsin.</p>
+    </article>
+    <article class="child-card fade-in" data-order="III">
+      <div class="child-name">Abram Ressman</div>
+      <div class="child-dates">Dates to verify</div>
+      <p class="child-note">A tailor in Odessa before immigration. The scanned history says he and Celia had no children; later he married Carrie Cohen.</p>
+    </article>
+    <article class="child-card fade-in" data-order="IV">
+      <div class="child-name">Louis Ressman</div>
+      <div class="child-dates">1882–1969</div>
+      <p class="child-note">Married Ida Cohen. The expanded branch adds Jeanette, David, Esther, and Harry Ressman.</p>
+    </article>
+    <article class="child-card fade-in" data-order="V">
+      <div class="child-name">Rebecca Ressman Bahcall</div>
+      <div class="child-dates">1881–1973</div>
+      <p class="child-note">Gave her passage ticket to Isadore Bahcall, then married him in Appleton, where the Bahcall business line grew.</p>
+    </article>
+    <article class="child-card fade-in" data-order="VI">
+      <div class="child-name">Harry Ressman</div>
+      <div class="child-dates">1885/1886–1976</div>
+      <p class="child-note">Moved to Appleton on his honeymoon with Sarah Spector and built Ressman's Clothiers across generations.</p>
+    </article>
+    <article class="child-card fade-in" data-order="VII">
+      <div class="child-name">Leon Ressman</div>
+      <div class="child-dates">1890–1971</div>
+      <p class="child-note">No longer an uncertain outside branch. The scanned history names Leon as the youngest surviving child of David Moses and Hinda.</p>
+    </article>
+  </div>
+
+  <div class="source-ribbon fade-in">
+    The older working tree listed Leon separately; the scanned family-history addendum resolves that gap. Some dates and spellings still need source-by-source verification, especially Beilen/Bailin, Bachall/Bahcall, Slaferman/Slafer, and Abram's branch.
+  </div>
+</section>
+
 <!-- DIRECT LINEAGE -->
 <section class="story-section" id="lineage">
   <div style="text-align: center; margin-bottom: 1rem;">
-    <div class="section-eyebrow">Chapter Two</div>
+    <div class="section-eyebrow">Chapter Three</div>
     <h2 class="section-title">Your Bloodline</h2>
     <p class="section-intro" style="margin: 1rem auto 0;">Eight generations, traced from a tailor in Nikolief to a woman in Phoenix. Every name here is a person whose story made yours possible.</p>
   </div>
@@ -1268,7 +1735,7 @@ section.story-section {
 <!-- STORIES -->
 <section class="story-section" id="stories">
   <div style="text-align: center; margin-bottom: 1rem;">
-    <div class="section-eyebrow">Chapter Three</div>
+    <div class="section-eyebrow">Chapter Four</div>
     <h2 class="section-title">Stories Worth Telling</h2>
     <p class="section-intro" style="margin: 1rem auto 0;">The moments your great-grandparents would have told you about, if they could have. Click any card to read the full account.</p>
   </div>
@@ -1276,10 +1743,142 @@ section.story-section {
   <div class="stories-grid" id="stories-grid"></div>
 </section>
 
+<!-- PHOTO ARCHIVE -->
+<section class="story-section archive-band" id="archive">
+  <div style="text-align: center; margin-bottom: 1rem;">
+    <div class="section-eyebrow">Chapter Five</div>
+    <h2 class="section-title">The Family Archive</h2>
+    <p class="section-intro" style="margin: 1rem auto 0;">Faces, streets, storefronts, records, and community landmarks gathered from the picture folder.</p>
+  </div>
+
+  <div class="archive-grid">
+    <figure class="archive-card wide fade-in">
+      <a class="archive-link" href="Pictures/HINDA PESSIN RESSMAN and her husband, DAVID RESSMAN.png">
+        <div class="archive-image"><img loading="lazy" src="Pictures/HINDA PESSIN RESSMAN and her husband, DAVID RESSMAN.png" alt="Portrait of Hinda Pessin Ressman and David Moses Ressman"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Portrait</div>
+          <div class="archive-title">Hinda Pessin & David Moses Ressman</div>
+          <div class="archive-desc">The immigrant generation at the center of the Ressman family record.</div>
+        </figcaption>
+      </a>
+    </figure>
+
+    <figure class="archive-card fade-in">
+      <a class="archive-link" href="Pictures/Marcus_and_Silvia_Slafer.jpg">
+        <div class="archive-image"><img loading="lazy" src="Pictures/Marcus_and_Silvia_Slafer.jpg" alt="Marcus and Sylvia Slafer seated together"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Portrait</div>
+          <div class="archive-title">Marcus & Sylvia Slafer</div>
+          <div class="archive-desc">Sylvia Ressman and Marcus Slafer, the Chicago link between Ressman and Miller.</div>
+        </figcaption>
+      </a>
+    </figure>
+
+    <figure class="archive-card tall fade-in">
+      <a class="archive-link" href="Pictures/Silvia slafer and Ruth Ressman.jpg">
+        <div class="archive-image"><img loading="lazy" src="Pictures/Silvia slafer and Ruth Ressman.jpg" alt="Sylvia Slafer and Ruth Ressman standing together"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Sisters</div>
+          <div class="archive-title">Sylvia & Ruth Ressman</div>
+          <div class="archive-desc">Leon and Rose's daughters, remembered in the scanned family history as part of a close, happy household.</div>
+        </figcaption>
+      </a>
+    </figure>
+
+    <figure class="archive-card fade-in">
+      <a class="archive-link" href="Pictures/appleton WI.jpg">
+        <div class="archive-image"><img loading="lazy" src="Pictures/appleton WI.jpg" alt="Historic street scene in Appleton Wisconsin"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Place</div>
+          <div class="archive-title">Appleton, Wisconsin</div>
+          <div class="archive-desc">The town where Ed Ressman built community and the Bahcall/Ressman business branches took root.</div>
+        </figcaption>
+      </a>
+    </figure>
+
+    <figure class="archive-card fade-in">
+      <a class="archive-link" href="Pictures/Bareman Street Synagogue 1923.avif">
+        <div class="archive-image"><img loading="lazy" src="Pictures/Bareman Street Synagogue 1923.avif" alt="Bateman Street synagogue in Appleton, dedicated in 1923"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Synagogue</div>
+          <div class="archive-title">Bateman Street Synagogue, 1923</div>
+          <div class="archive-desc">Moses Montefiore Congregation built this Appleton synagogue at Atlantic and Bateman streets in 1922 and dedicated it on June 10, 1923.</div>
+        </figcaption>
+      </a>
+    </figure>
+
+    <figure class="archive-card fade-in">
+      <a class="archive-link" href="Pictures/Isadore_Bahcall.jpg">
+        <div class="archive-image"><img loading="lazy" src="Pictures/Isadore_Bahcall.jpg" alt="Portrait of Isadore Bahcall"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Portrait</div>
+          <div class="archive-title">Isadore Bahcall</div>
+          <div class="archive-desc">Rebecca Ressman's fiance, later husband, and treasurer of Moses Montefiore Congregation when it was officially founded in 1903.</div>
+        </figcaption>
+      </a>
+    </figure>
+
+    <figure class="archive-card wide fade-in">
+      <a class="archive-link" href="Pictures/Acme Manufacturing chicago.jpg">
+        <div class="archive-image"><img loading="lazy" src="Pictures/Acme Manufacturing chicago.jpg" alt="Acme Manufacturing building in Chicago"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Business</div>
+          <div class="archive-title">Acme Manufacturing, Chicago</div>
+          <div class="archive-desc">The family's first American manufacturing venture, remembered as ambitious and short-lived.</div>
+        </figcaption>
+      </a>
+    </figure>
+
+    <figure class="archive-card wide fade-in">
+      <a class="archive-link" href="Pictures/David-Bailin Eagle Supply and Plastics.jpg">
+        <div class="archive-image"><img loading="lazy" src="Pictures/David-Bailin Eagle Supply and Plastics.jpg" alt="David Bailin seated at his desk at Eagle Supply and Plastics"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Business</div>
+          <div class="archive-title">David Bailin at Eagle Supply & Plastics</div>
+          <div class="archive-desc">A later Appleton business branch growing out of the Bahcall/Bailin scrap-and-supply tradition.</div>
+        </figcaption>
+      </a>
+    </figure>
+
+    <figure class="archive-card fade-in">
+      <a class="archive-link" href="Pictures/Corner Snack Shop at Montrose and Lincoln.jpg">
+        <div class="archive-image"><img loading="lazy" src="Pictures/Corner Snack Shop at Montrose and Lincoln.jpg" alt="Corner Snack Shop at Montrose and Lincoln"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Chicago</div>
+          <div class="archive-title">Montrose & Lincoln</div>
+          <div class="archive-desc">The neighborhood world around Leon's Montrose Avenue tailor shop and apartment.</div>
+        </figcaption>
+      </a>
+    </figure>
+
+    <figure class="archive-card fade-in">
+      <a class="archive-link" href="Pictures/Allan Rusky newspaper article.jpg">
+        <div class="archive-image"><img loading="lazy" src="Pictures/Allan Rusky newspaper article.jpg" alt="Newspaper article featuring Alan Rusky"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Clipping</div>
+          <div class="archive-title">Alan Rusky at Ressman's Clothiers</div>
+          <div class="archive-desc">A newspaper snapshot from the Appleton clothing-store branch.</div>
+        </figcaption>
+      </a>
+    </figure>
+
+    <figure class="archive-card fade-in">
+      <a class="archive-link" href="Pictures/First Ramada inn Flagstaff, AZ.jpg">
+        <div class="archive-image"><img loading="lazy" src="Pictures/First Ramada inn Flagstaff, AZ.jpg" alt="First Ramada Inn in Flagstaff Arizona"></div>
+        <figcaption class="archive-caption">
+          <div class="archive-type">Business</div>
+          <div class="archive-title">First Ramada Inn, Flagstaff</div>
+          <div class="archive-desc">Ezra F. Ressman was one of Ramada's original investors. The first Ramada opened on Route 66 in Flagstaff in 1954.</div>
+        </figcaption>
+      </a>
+    </figure>
+  </div>
+</section>
+
 <!-- FAMILY BUSINESSES -->
 <section class="story-section" id="businesses">
   <div style="text-align: center; margin-bottom: 1rem;">
-    <div class="section-eyebrow">Chapter Four</div>
+    <div class="section-eyebrow">Chapter Six</div>
     <h2 class="section-title">Hands That Built</h2>
     <p class="section-intro" style="margin: 1rem auto 0;">Tailors, scrap dealers, junk peddlers, dressmakers, dry cleaners, clothiers. The family was always making something.</p>
   </div>
@@ -1287,12 +1886,45 @@ section.story-section {
   <div class="businesses-list" id="businesses-list"></div>
 </section>
 
+<!-- TREE AND RECORDS -->
+<section class="story-section" id="records">
+  <div style="text-align: center; margin-bottom: 1rem;">
+    <div class="section-eyebrow">Chapter Seven</div>
+    <h2 class="section-title">Records & Corrections</h2>
+    <p class="section-intro" style="margin: 1rem auto 0;">The emotional story and the working genealogy belong side by side: preserved records and the open questions that still deserve careful checking.</p>
+  </div>
+
+  <div class="records-layout">
+    <div class="records-panel fade-in">
+      <div class="record-card">
+        <div class="panel-title">Selective Service Record</div>
+        <p class="panel-copy">Joseph Ressman's registration is preserved as a record image in the archive.</p>
+        <a href="Pictures/Joseph Ressman Selective Service Registration.png">
+          <img loading="lazy" src="Pictures/Joseph Ressman Selective Service Registration.png" alt="Joseph Ressman Selective Service registration">
+        </a>
+      </div>
+    </div>
+
+    <div class="research-panel fade-in">
+      <div class="panel-title">Research Notes to Carry Forward</div>
+      <p class="panel-copy">These are not loose ends to hide; they are the next invitations for better sources.</p>
+      <ul class="research-list">
+        <li>Leon Ressman should be treated as the youngest surviving child of David Moses Ressman and Hinda Pessin.</li>
+        <li>David Moses and Hinda had thirteen children; the scanned history names seven surviving children.</li>
+        <li>Joseph Bailin and Joe Bailin are likely one person, based on the expanded Rachel Beilen/Bailin branch.</li>
+        <li>Abram Ressman's branch differs between the older tree and the scanned history and needs original-record reconciliation.</li>
+        <li>Ezra F. Ressman was one of Ramada's original investors; the first Ramada opened on Route 66 in Flagstaff in 1954.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- PEOPLE DIRECTORY -->
 <section class="story-section" id="everyone">
   <div style="text-align: center; margin-bottom: 1rem;">
-    <div class="section-eyebrow">Chapter Five</div>
+    <div class="section-eyebrow">Chapter Eight</div>
     <h2 class="section-title">Everyone Who Came Before</h2>
-    <p class="section-intro" style="margin: 1rem auto 0;">Search for any name. Or browse a branch. Hundreds of cousins, in-laws, and forebears.</p>
+    <p class="section-intro" style="margin: 1rem auto 0;">Forebears, cousins, in-laws, business partners, and the people whose names still need more source work.</p>
   </div>
   
   <div class="people-controls">
@@ -1300,6 +1932,8 @@ section.story-section {
     <div class="filter-pills" id="filter-pills">
       <button class="filter-pill active" data-branch="all">All</button>
       <button class="filter-pill" data-branch="ressman">Ressman</button>
+      <button class="filter-pill" data-branch="pessin">Pessin</button>
+      <button class="filter-pill" data-branch="vanetsky">Vanetsky</button>
       <button class="filter-pill" data-branch="bailin">Bailin / Beilen</button>
       <button class="filter-pill" data-branch="bahcall">Bahcall</button>
       <button class="filter-pill" data-branch="miller">Miller / Malyn</button>
@@ -1317,7 +1951,7 @@ section.story-section {
     <div class="dedication-flourish">❦</div>
     <h2 class="dedication-title">For You, Mom</h2>
     <div class="dedication-body">
-      <p>You're the reason any of this matters. The Ressmans crossed an ocean, the Vanetskys peddled junk on the south side of Chicago, Sylvia broke her knee falling off a porch in Pontiac and never let it slow her down — all of it folding forward, generation by generation, until it folded into you. And now into Jacob and Landon, who carry the line forward.</p>
+      <p>You're the reason any of this matters. The Ressmans crossed an ocean, the Vanetskys peddled junk on the south side of Chicago, Sylvia broke her knee falling off a porch in Pontiac and never let it slow her down — all of it folding forward, generation by generation, until it folded into you. And now into Jacob and Landon, who carry the line forward, and Ozzie, who carried his place in the family with all the love a dog can hold.</p>
       <p style="margin-top: 1.5rem;">You carry Hinda's resilience and Rose's warmth and Sylvia's quiet, steady strength. We see it. We've always seen it.</p>
       <p style="margin-top: 1.5rem;">Happy Mother's Day.</p>
     </div>
@@ -1331,7 +1965,7 @@ section.story-section {
 <!-- STORY MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-    <button class="modal-close" id="modal-close">×</button>
+    <button class="modal-close" id="modal-close" aria-label="Close story">×</button>
     <div class="modal-eyebrow" id="modal-eyebrow"></div>
     <h2 class="modal-title" id="modal-title"></h2>
     <div class="modal-body" id="modal-body"></div>
@@ -1347,29 +1981,29 @@ const lineage = [
   {
     gen: "G1", side: "left",
     name: "David Moses Ressman",
-    dates: "Russia → Chicago",
-    role: "Tailor in Nikolief",
-    note: "Made uniforms for the Tsar's army. Whipped his children to say their prayers, then had them help with the sewing. Father of thirteen, only seven survived."
+    dates: "1849–1925",
+    role: "Tailor in Nikolief / Nikolaev",
+    note: "Made uniforms for the Tsar's army. Immigrated through Baltimore in 1903 and died in Chicago. Father of thirteen children, seven of whom survived."
   },
   {
     gen: "G1", side: "right",
     name: "Hinda Pessin Ressman",
-    dates: "His Wife",
+    dates: "1850–1937",
     role: "Daughter of a chazan",
-    note: "Deaf. Blinded in one eye by a kite. Clubbed by Cossacks. Carried thirteen children, raised seven, and crossed an ocean. Her father was a chazan and shogut; her brother Nathan, a magid."
+    note: "Deaf. Blinded in one eye by a kite. Clubbed by Cossacks. Carried thirteen children, raised seven, and crossed an ocean. Her father was remembered as a chazan and shochet; her brother Nathan, a magid."
   },
   { gen: "Generation II — Chicago, Pontiac, Green Bay", side: "left", isCard: false, label: true, content: "The First American Generation" },
   {
     gen: "G2", side: "left",
     name: "Leon Ressman",
-    dates: "Youngest of seven",
+    dates: "1890–1971",
     role: "Tailor → Cleaner → Clothier",
     note: "Came from Russia at age ten. Sent young to work in his older brothers' tailor shops. Eventually opened a cleaning plant in Pontiac, Illinois — until the gasoline fumes made him ill."
   },
   {
     gen: "G2", side: "right",
     name: "Rose Vanetsky Ressman",
-    dates: "1890s? – ?",
+    dates: "1889–1975",
     role: "His Wife",
     note: "Only child of Louis Vanetsky (a junk peddler with a horse and wagon in Englewood) and Machla Rifkin. Fell off a second-floor porch at nine and broke her knee. Slight limp her whole life — never slowed her down."
   },
@@ -1377,14 +2011,14 @@ const lineage = [
   {
     gen: "G3", side: "left",
     name: "Sylvia Ressman Slafer",
-    dates: "May 28, 1910 – ?",
+    dates: "May 28, 1910 – 2006",
     role: "Born in Pontiac, Illinois",
     note: "First child of Leon and Rose. Born during a year the family had moved 90 miles south of Chicago for work. Lived through the Depression with her parents and siblings on Montrose Avenue, Chicago."
   },
   {
     gen: "G3", side: "right",
     name: "Marcus Slaferman / Slafer",
-    dates: "Her Husband",
+    dates: "1907/1909–1983",
     role: "Dress pattern grader",
     note: "Shortened the family name from 'Slaferman' to 'Slafer.' Father of Howard (1939) and Lois (1946)."
   },
@@ -1416,7 +2050,7 @@ const lineage = [
     name: "Michaela Diane Brune Miller",
     dates: "His wife",
     role: "Mother of Jacob and Landon",
-    note: "Married Russell. Mother of Mom's two grandsons."
+    note: "Married Russell. Mother of Jacob and Landon."
   },
   {
     gen: "G5", side: "right",
@@ -1425,7 +2059,7 @@ const lineage = [
     role: "Youngest",
     note: "The third star."
   },
-  { gen: "Generation VI — The Grandsons", side: "left", isCard: false, label: true, content: "Mom's Grandsons" },
+  { gen: "Generation VI — The Grandchildren", side: "left", isCard: false, label: true, content: "Mom's Grandchildren" },
   {
     gen: "G6", side: "left",
     name: "Jacob Shaw Miller",
@@ -1439,6 +2073,13 @@ const lineage = [
     dates: "November 5, 2014",
     role: "Russell & Michaela's younger son",
     note: "The second of the next generation. Mom's grandson."
+  },
+  {
+    gen: "G6", side: "center",
+    name: "Ozzie Boswell Miller",
+    dates: "c. 2009–2025",
+    role: "Lois's granddog. Family grandchild.",
+    note: "Passed in 2025 at age 16. Loved as one of the grandchildren, and part of the Miller family story in his own sweet way."
   }
 ];
 
@@ -1449,7 +2090,7 @@ const stories = [
     title: "Hinda & the Cossacks",
     eyebrow: "From the Old Country",
     preview: "She was deaf, blinded in one eye, and beaten by Cossacks as a young woman. And still, she raised seven children and crossed an ocean.",
-    body: `<p>Hinda Pessin was born into a learned family in Russia. Her father, Harry Pessin, was a chazan and shogut. Her brother Nathan was a magid — a storyteller. Her mother was Esther Skolnick Pessin. They were, by the family's own account, "a well-educated family."</p>
+    body: `<p>Hinda Pessin was born into a learned family in Russia. Her father, Harry Pessin, was a chazan and shochet. Her brother Nathan was a magid — a storyteller. Her mother was Esther Skolnick Pessin. They were, by the family's own account, "a well-educated family."</p>
     <p>But the world she was born into was not kind to Jewish women, and Hinda's life carried scars from it. She was <em>deaf</em> — a condition some of her children would inherit in lesser degree. She had been <em>blinded in one eye</em> as a child when a kite some children were playing with struck her in the face. And as a young woman, she had been <em>clubbed about the head by Cossacks</em>, which the family always suspected may have contributed to her deafness.</p>
     <p>She married a tailor named David Moses Ressman in Nikolief, where he made uniforms for the Tsar's army. They had thirteen children. Only seven survived. And eventually, in 1903, she boarded a boat with the children who had lived and crossed the Atlantic to a country whose language she did not speak.</p>
     <p>If you want to know where the family's stubbornness comes from — its refusal to be diminished — it comes from Hinda.</p>`
@@ -1476,13 +2117,14 @@ const stories = [
   },
   {
     icon: "IV",
-    title: "The First Shul in Appleton",
-    eyebrow: "Ed Ressman's Living Room",
-    preview: "Ed Ressman was a peddler and scrap dealer. When he settled in Appleton, Wisconsin, the town had no synagogue — so he started the first one in his own home.",
-    body: `<p>Ed Ressman — David Moses's brother — was the first of the family to come to America. He arrived as a peddler and scrap dealer with his wife Sonya Hirshkovitz. They settled first in Chicago, then moved north to Appleton, Wisconsin, where Sonya had relatives, the Greenbergs.</p>
-    <p>Appleton, in the late nineteenth century, had a small Jewish community but no synagogue. Ed solved that problem the way the family solved most problems: by doing it himself. He <em>started the first shul in Appleton in his own home.</em></p>
-    <p>Ed and Sonya never had children of their own. His sister Ida had died in Europe leaving a daughter named Rose, and Ed and Sonya adopted her. When the time came, Ed sent a ticket back to Russia for Rose and another for his niece Rebecca Ressman — but Rebecca, in love, gave her ticket to her fiancé Isadore Bahcall.</p>
-    <p>Isadore came over with Rose. Ed gave him a job in his scrap business in Appleton. That business — built on family, tickets given away in love, and a synagogue in a living room — eventually became <em>I. Bahcall, Inc.</em>, which still operates today, more than a hundred years later.</p>`
+    title: "Moses Montefiore Congregation",
+    eyebrow: "Appleton, Wisconsin",
+    preview: "Edward 'Ed' Ressman held minyans and religious services in his home as early as 1890. That living-room beginning became Moses Montefiore Congregation.",
+    body: `<p>Edward "Ed" Ressman — David Moses's brother — was the first of the family to come to America. He arrived as a peddler and scrap dealer with his wife Sonya Hirshkovitz. They settled first in Chicago, then moved north to Appleton, Wisconsin, where Sonya had relatives, the Greenbergs.</p>
+    <p>Appleton, in the late nineteenth century, had a small Jewish community but no synagogue. Ed solved that problem the way the family solved most problems: by doing it himself. Beginning around <em>1890</em>, he conducted minyans and religious services in his own home. He owned his own Torahs, and the early peddlers, the only other Orthodox Jews of the city, attended.</p>
+    <p>The Moses Montefiore Congregation was officially founded in <em>1903</em>. Its first officers included President David Belzer, Vice President Abe Levin, Secretary A. L. Jacobson, and Treasurer <em>Isadore Bahcall</em> — the same Isadore who came to America after Rebecca Ressman gave him her ticket.</p>
+    <p>In 1910, Aaron Zussman came to Appleton with his family and became cantor, teacher, shochet, and spiritual leader. A synagogue was built on the corner of <em>Atlantic and Bateman streets</em> in 1922 and dedicated on June 10, 1923. The congregation later joined United Synagogues of America in 1965, moved to a modern North Meade Street building in 1970, and continues as part of Jewish life in the Fox Valley.</p>
+    <p>So the story is larger than one living room. It is Ed's home, Isadore's treasury, a Bateman Street synagogue, and a community that kept adapting for more than a century.</p>`
   },
   {
     icon: "V",
@@ -1525,6 +2167,7 @@ const stories = [
     <p>After his pre-law degree, Ezra continued at DePaul University to study law. He passed the State Bar Exam, became a full-fledged lawyer, and opened a practice with two friends, Mor Levin and Jerry Blonder.</p>
     <p>Then the war came.</p>
     <p>Ezra <em>went into service</em>. He was drafted, where his partners weren't. While he served, he <em>sent his army pay back home to keep the law office going.</em> His partners maintained the practice in his absence.</p>
+    <p>After the war, Ezra's story reached unexpectedly west. He was one of the original investors in <em>Ramada</em>, whose first hotel opened on Route 66 in Flagstaff, Arizona in 1954. The family line runs through tailor shops, scrap yards, law offices, and then, somehow, into the motel signs of the American highway.</p>
     <p>He never married. He died many years later, having spent his life as a Chicago lawyer — quiet, generous, the kind of man who would mail his army pay back to his partners so the work could go on.</p>`
   },
   {
@@ -1575,78 +2218,108 @@ const stories = [
 const businesses = [
   {
     year: "1880s",
-    name: "Ed Ressman's Scrap Yard",
+    name: "Edward Ressman's Scrap Yard",
     place: "Appleton, Wisconsin",
     desc: "Founded by David Moses's brother Ed, the first Ressman in America. Took in his niece's fiancé Isadore Bahcall as an employee.",
-    tag: "Became I. Bahcall, Inc."
+    tag: "Became I. Bahcall, Inc.",
+    image: "Pictures/appleton WI.jpg",
+    imageAlt: "Historic street scene in Appleton Wisconsin"
   },
   {
     year: "1903",
     name: "Acme Manufacturing",
     place: "Chicago, Illinois",
     desc: "The first family business. The Ressman brothers all worked in it, making parts of men's suits. Failed quickly due to family infighting — but every brother went on to a tailoring career.",
-    tag: "The first attempt"
+    tag: "The first attempt",
+    image: "Pictures/Acme Manufacturing chicago.jpg",
+    imageAlt: "Acme Manufacturing building in Chicago"
   },
   {
     year: "1909",
     name: "Leon's Cleaning & Dyeing",
     place: "Pontiac, Illinois",
     desc: "Your great-grandfather Leon's first business. Operated by hand at first, then a real plant on Main Street. Closed when gasoline fumes made him sick.",
-    tag: "Closed for his health"
+    tag: "Closed for his health",
+    image: "Pictures/College Avenue Apple Wi 1964.jpg",
+    imageAlt: "College Avenue in Appleton Wisconsin in 1964"
   },
   {
     year: "1914",
     name: "Ressman's Clothiers",
     place: "Appleton, Wisconsin",
     desc: "Founded by Harry Ressman and Sarah Spector on their honeymoon. Still owned and operated today by Harry's grandson Alan Rusky and his wife Annette.",
-    tag: "Still open after 110+ years"
+    tag: "Still open after 110+ years",
+    image: "Pictures/Allan Rusky newspaper article.jpg",
+    imageAlt: "Newspaper article featuring Alan Rusky at Ressman's Clothiers"
   },
   {
     year: "1920s",
     name: "Bahcall Scrap Metal",
     place: "Appleton, Wisconsin",
     desc: "Inherited from Ed Ressman by his nephew-in-law Isadore Bahcall. Renamed I. Bahcall, Inc. Sold scrap, then new steel and rubber goods.",
-    tag: "Three generations"
+    tag: "Three generations",
+    image: "Pictures/appleton WI.jpg",
+    imageAlt: "Historic Appleton Wisconsin street scene"
   },
   {
     year: "1924",
     name: "Leon's Tailor Shop",
     place: "3253 W. Montrose Ave, Chicago",
     desc: "After the Green Bay clothing store failed in the Depression, Leon opened this small tailor shop in Chicago. The family lived in an apartment behind the store.",
-    tag: "Where Sylvia grew up"
+    tag: "Where Sylvia grew up",
+    image: "Pictures/Corner Snack Shop at Montrose and Lincoln.jpg",
+    imageAlt: "Corner Snack Shop at Montrose and Lincoln in Chicago"
   },
   {
     year: "1930s",
     name: "Sander's Rose Shop",
     place: "Appleton, Wisconsin",
     desc: "A ladies' clothing store owned by Esther 'Jere' Ressman's husband Sander Rosenblum, an immigrant from Sweden. Jere helped run the store.",
-    tag: "Run by Esther 'Jere'"
+    tag: "Run by Esther 'Jere'",
+    image: "Pictures/College Avenue Apple Wi 1964.jpg",
+    imageAlt: "College Avenue in Appleton Wisconsin in 1964"
   },
   {
     year: "1958",
     name: "Eagle Supply & Plastics",
     place: "Appleton, Wisconsin",
     desc: "Spun off from I. Bahcall, Inc. by Joseph Bailin's son David and son-in-law Ivor Lewis. A continuation of the scrap-and-supply tradition into a new generation.",
-    tag: "The next generation"
+    tag: "The next generation",
+    image: "Pictures/David-Bailin Eagle Supply and Plastics.jpg",
+    imageAlt: "David Bailin seated at his desk at Eagle Supply and Plastics"
+  },
+  {
+    year: "1954",
+    name: "Ezra Ressman & Ramada",
+    place: "Flagstaff, Arizona",
+    desc: "Ezra F. Ressman was one of Ramada's original investors. The first Ramada opened on Route 66 in Flagstaff, Arizona in 1954.",
+    tag: "Original investor",
+    image: "Pictures/First Ramada inn Flagstaff, AZ.jpg",
+    imageAlt: "First Ramada Inn in Flagstaff Arizona"
   }
 ];
 
 // People directory - keeping this comprehensive but manageable
 const people = [
   // Founding generation
-  { name: "David Moses Ressman", dates: "Russia → ?", relation: "Patriarch. Tailor in Nikolief, Russia.", branch: "ressman" },
-  { name: "Hinda Pessin Ressman", dates: "Russia → ?", relation: "Matriarch. Daughter of Harry Pessin, a chazan and shogut.", branch: "ressman" },
-  { name: "Ed Ressman", dates: "?", relation: "David Moses's brother. First Ressman in America.", branch: "ressman" },
+  { name: "Joseph Ressman", dates: "Deceased", relation: "Earliest known Ressman ancestor in the working tree.", branch: "ressman" },
+  { name: "David Moses Ressman", dates: "1849–1925", relation: "Patriarch. Tailor in Nikolief/Nikolaev, Russia; immigrated through Baltimore in 1903.", branch: "ressman" },
+  { name: "Hinda Pessin Ressman", dates: "1850–1937", relation: "Matriarch. Daughter of Harry Pessin and Esther Skolnick; crossed with David Moses.", branch: "pessin" },
+  { name: "Aaron Harry / Harry Pessin", dates: "Deceased", relation: "Hinda's father; described in the family notes as a chazan and shochet.", branch: "pessin" },
+  { name: "Esther Skolnick Pessin", dates: "Deceased", relation: "Hinda's mother.", branch: "pessin" },
+  { name: "Nathan Pessin", dates: "Deceased", relation: "Hinda's brother; remembered as a magid, or storyteller.", branch: "pessin" },
+  { name: "Edward 'Ed' Ressman", dates: "1841–1905", relation: "David Moses's brother. First Ressman in America; conducted minyans and religious services in his Appleton home.", branch: "ressman" },
+  { name: "Ida Ressman", dates: "Deceased", relation: "David Moses and Ed's sister; died in Europe and left a daughter named Rose.", branch: "ressman" },
   { name: "Sonya Hirshkovitz Ressman", dates: "?", relation: "Ed Ressman's wife.", branch: "ressman" },
   
   // Children of David Moses & Hinda
-  { name: "Rachel Ressman Beilen", dates: "1865–1954", relation: "Eldest daughter. Married David Beilen.", branch: "ressman" },
-  { name: "Joseph Ressman", dates: "1867–1949", relation: "Son. Married Jennie. Seven daughters.", branch: "ressman" },
-  { name: "Abram Ressman", dates: "1867–?", relation: "Son. Married Carrie Cohen (a widow).", branch: "ressman" },
-  { name: "Louis Ressman", dates: "?", relation: "Son. Married Ida Cohen. Four children.", branch: "ressman" },
+  { name: "Rachel Ressman Beilen/Bailin", dates: "1865–1954", relation: "Eldest daughter. Married David Beilen; mother of the Bailin branch.", branch: "ressman" },
+  { name: "Joseph Ressman", dates: "1867/1873–1949", relation: "Son. Married Jennie Joseph; father of seven daughters.", branch: "ressman" },
+  { name: "Abram Ressman", dates: "Dates to verify", relation: "Son. Tailor in Odessa; married Celia, then Carrie Cohen.", branch: "ressman" },
+  { name: "Louis Ressman", dates: "1882–1969", relation: "Son. Married Ida Cohen. Four children.", branch: "ressman" },
   { name: "Rebecca Ressman Bahcall", dates: "1881–1973", relation: "Daughter. Gave her ticket to fiancé Isadore Bahcall.", branch: "ressman" },
-  { name: "Harry Ressman", dates: "1886–1976", relation: "Son. Founded Ressman's Clothiers in Appleton.", branch: "ressman" },
-  { name: "Leon Ressman", dates: "?", relation: "Youngest son. Your great-grandfather.", branch: "ressman" },
+  { name: "Harry Ressman", dates: "1885/1886–1976", relation: "Son. Founded Ressman's Clothiers in Appleton.", branch: "ressman" },
+  { name: "Leon Ressman", dates: "1890–1971", relation: "Youngest surviving son. Lois's maternal grandfather.", branch: "ressman" },
   
   // Lois's direct line - Slafer
   { name: "Sarah Spector Ressman", dates: "?", relation: "Harry's wife. Met him at Hart, Schaffner & Marx.", branch: "ressman" },
@@ -1656,17 +2329,17 @@ const people = [
   { name: "Annette Baron Rusky", dates: "?", relation: "Alan Rusky's wife. Works in Ressman's Clothiers.", branch: "ressman" },
   
   // Vanetsky line
-  { name: "Louis Vanetsky", dates: "?", relation: "Junk peddler in Englewood, Chicago. Rose's father.", branch: "ressman" },
-  { name: "Machla Rifkin Vanetsky", dates: "?", relation: "Rose's mother. Died after gallbladder surgery.", branch: "ressman" },
-  { name: "Rose Vanetsky Ressman", dates: "?", relation: "Only child of Louis & Machla. Married Leon Ressman.", branch: "ressman" },
+  { name: "Louis Vanetsky", dates: "1868–1930", relation: "Junk peddler in Englewood, Chicago. Rose's father.", branch: "vanetsky" },
+  { name: "Machla / Mishila Mary Rifkin Vanetsky", dates: "1870–deceased", relation: "Rose's mother. Died after gallbladder surgery.", branch: "vanetsky" },
+  { name: "Rose Vanetsky Ressman", dates: "1889–1975", relation: "Only surviving child of Louis & Machla. Married Leon Ressman.", branch: "vanetsky" },
   
   // Leon's children
-  { name: "Sylvia Ressman Slafer", dates: "1910–?", relation: "Leon & Rose's daughter. Lois's mother.", branch: "slafer" },
-  { name: "Ruth Ressman Leavitt", dates: "1912–?", relation: "Leon & Rose's daughter.", branch: "ressman" },
-  { name: "Ezra Ressman", dates: "1915–?", relation: "Leon & Rose's son. Lawyer in Chicago. Never married.", branch: "ressman" },
+  { name: "Sylvia Ressman Slafer", dates: "1910–2006", relation: "Leon & Rose's daughter. Lois's mother.", branch: "slafer" },
+  { name: "Ruth Ressman Leavitt", dates: "1912–2013", relation: "Leon & Rose's daughter.", branch: "ressman" },
+  { name: "Ezra F. Ressman", dates: "1915/1916–1969", relation: "Leon & Rose's son. Lawyer in Chicago and one of Ramada's original investors.", branch: "ressman" },
   
   // Slafer line
-  { name: "Marcus Slaferman / Slafer", dates: "?", relation: "Sylvia's husband. Dress pattern grader. Lois's father.", branch: "slafer" },
+  { name: "Marcus Slaferman / Slafer", dates: "1907/1909–1983", relation: "Sylvia's husband. Dress pattern grader. Lois's father.", branch: "slafer" },
   { name: "Howard Slafer", dates: "1939–", relation: "Sylvia & Marcus's son. Salesman for Minolta.", branch: "slafer" },
   { name: "Lois Ann Slafer Miller", dates: "1946–", relation: "MOM. Sylvia & Marcus's daughter.", branch: "slafer" },
   { name: "Linda McNeil Slafer", dates: "?", relation: "Howard's first wife.", branch: "slafer" },
@@ -1686,10 +2359,11 @@ const people = [
   // Lois & Joel's children
   { name: "Maizie Lee Miller", dates: "1973–", relation: "Lois & Joel's eldest. Born Tel Aviv.", branch: "miller" },
   { name: "Russell Jasun Miller", dates: "1978–", relation: "Lois & Joel's son. Born Phoenix.", branch: "miller" },
-  { name: "Michaela Diane Brune Miller", dates: "?", relation: "Russell's wife. Mother of Lois's grandsons.", branch: "miller" },
+  { name: "Michaela Diane Brune Miller", dates: "?", relation: "Russell's wife. Mother of Jacob and Landon.", branch: "miller" },
   { name: "Ilene Davida Miller", dates: "1980–", relation: "Lois & Joel's youngest. Born Phoenix.", branch: "miller" },
   { name: "Jacob Shaw Miller", dates: "June 19, 2013–", relation: "Russell & Michaela's son. Lois's grandson.", branch: "miller" },
   { name: "Landon Andrew Miller", dates: "Nov 5, 2014–", relation: "Russell & Michaela's son. Lois's grandson.", branch: "miller" },
+  { name: "Ozzie Boswell Miller", dates: "c. 2009–2025", relation: "Lois's granddog and beloved family grandchild. Passed in 2025 at age 16.", branch: "miller" },
   
   // Bailin / Beilen line
   { name: "David Beilen", dates: "?–1905", relation: "Rachel's husband. Died of tuberculosis at 38.", branch: "bailin" },
@@ -1698,7 +2372,7 @@ const people = [
   { name: "Eva Bailin Herman", dates: "1895–1951", relation: "Rachel & David's daughter.", branch: "bailin" },
   { name: "Joseph Bailin", dates: "1897–1958", relation: "Rachel & David's son. Renamed family Beilen → Bailin.", branch: "bailin" },
   { name: "Bertha Bailin Goldstein", dates: "1900–?", relation: "Rachel & David's daughter.", branch: "bailin" },
-  { name: "Sadie Bailin", dates: "1902–1969", relation: "Rachel & David's daughter. Retarded after measles.", branch: "bailin" },
+  { name: "Sadie Bailin", dates: "1902–1969", relation: "Rachel & David's daughter. Lived with lifelong intellectual disability after measles in infancy.", branch: "bailin" },
   { name: "Abram Bailin", dates: "1905–~1956", relation: "Rachel & David's youngest, only one born in America.", branch: "bailin" },
   { name: "David M. Bailin", dates: "1927–", relation: "Joseph's son. Eagle Supply & Plastics.", branch: "bailin" },
   { name: "Helen Bailin Lewis", dates: "1929–", relation: "Joseph's daughter. Married Ivor Lewis of Dublin.", branch: "bailin" },
@@ -1706,6 +2380,16 @@ const people = [
   { name: "Stuart Lee Bailin", dates: "1955–", relation: "David's son.", branch: "bailin" },
   { name: "Jared 'Jerry' Hugh Bailin", dates: "1958–", relation: "David's son. Works at Ressman's Clothiers.", branch: "bailin" },
   { name: "Jo Ann Bailin", dates: "1962–", relation: "David's daughter.", branch: "bailin" },
+  { name: "Shaindl Bailin", dates: "Died in infancy", relation: "First child of Rachel Ressman and David Beilen/Bailin.", branch: "bailin" },
+  { name: "Alexander / Alex Levy", dates: "1889–1967", relation: "Esther Bailin's husband; hat maker.", branch: "bailin" },
+  { name: "Frank Kritzberg", dates: "1888–1944", relation: "Bessie Bailin's husband; printer.", branch: "bailin" },
+  { name: "David Herman", dates: "?", relation: "Eva Bailin's husband; milkman.", branch: "bailin" },
+  { name: "Jeanette Leibowitz Bailin", dates: "?", relation: "Joseph Bailin's wife and friend of Eva Bailin.", branch: "bailin" },
+  { name: "Harry Goldstein", dates: "?", relation: "Bertha Bailin's husband; advertising executive and later grocer.", branch: "bailin" },
+  { name: "David 'Davey' Kritzberg", dates: "1913–", relation: "Bessie and Frank Kritzberg's son.", branch: "bailin" },
+  { name: "Mildred Kritzberg Sherr", dates: "1927–", relation: "Bessie and Frank Kritzberg's daughter.", branch: "bailin" },
+  { name: "Violet Schram Bailin", dates: "?", relation: "David M. Bailin's wife; met him at the University of Wisconsin.", branch: "bailin" },
+  { name: "Ivor Lewis", dates: "?", relation: "Helen Bailin's husband; native of Dublin and partner in Eagle Supply & Plastics.", branch: "bailin" },
   
   // Bahcall line
   { name: "Isadore Bahcall", dates: "1880–1963", relation: "Rebecca's husband. Founded I. Bahcall, Inc.", branch: "bahcall" },
@@ -1717,6 +2401,14 @@ const people = [
   { name: "Richard Rosenzweig", dates: "1935–", relation: "Rose & Walter's son. Exec VP of Playboy Enterprises.", branch: "bahcall" },
   { name: "Dennis Bahcall", dates: "1934–", relation: "Edward's son. Family business.", branch: "bahcall" },
   { name: "Bernard Balkansky", dates: "1905–1979", relation: "Bebe's husband. Manitowoc, Wisconsin.", branch: "bahcall" },
+  { name: "Ruth Kahn Bahcall", dates: "1908–1952", relation: "Edward Bahcall's wife.", branch: "bahcall" },
+  { name: "Naomi Cohen Bahcall", dates: "?", relation: "Dennis Bahcall's wife, from Appleton.", branch: "bahcall" },
+  { name: "Ruth Bahcall Shayne", dates: "1955–", relation: "Dennis and Naomi Bahcall's daughter.", branch: "bahcall" },
+  { name: "Michael Bahcall", dates: "1957–", relation: "Dennis and Naomi Bahcall's son.", branch: "bahcall" },
+  { name: "Lee Bahcall", dates: "1958–", relation: "Dennis and Naomi Bahcall's child.", branch: "bahcall" },
+  { name: "Jerre Balkansky", dates: "1933–1941", relation: "Bebe and Bernard Balkansky's child; died at age eight.", branch: "bahcall" },
+  { name: "David Balkansky", dates: "1937–", relation: "Bebe and Bernard Balkansky's son; worked for I. Bahcall, Inc.", branch: "bahcall" },
+  { name: "Harlan Balkansky", dates: "1944–", relation: "Bebe and Bernard Balkansky's son; worked for I. Bahcall, Inc.", branch: "bahcall" },
   
   // Some Joseph Ressman descendants
   { name: "Jennie Joseph Ressman", dates: "1872–1932", relation: "Joseph Ressman's wife. Niece of Rachel's mother-in-law.", branch: "ressman" },
@@ -1727,6 +2419,22 @@ const people = [
   { name: "Dorothy Ressman Abelman", dates: "1903–1970", relation: "Joseph & Jennie's daughter.", branch: "ressman" },
   { name: "Celia Ressman Less", dates: "?", relation: "Joseph & Jennie's daughter.", branch: "ressman" },
   { name: "Faye Ressman", dates: "?", relation: "Joseph & Jennie's youngest. Never married.", branch: "ressman" },
+  { name: "Joseph Burstein", dates: "?", relation: "Lottie Ressman's husband; lived in Neenah, Wisconsin.", branch: "ressman" },
+  { name: "Myrtle Burstein", dates: "1917–1974", relation: "Lottie and Joseph Burstein's daughter.", branch: "ressman" },
+  { name: "Victor Burstein", dates: "1919–", relation: "Lottie and Joseph Burstein's son; foundry owner and former mayor of Albion, Michigan.", branch: "ressman" },
+  { name: "Meyer Lewis Burstein", dates: "1923–", relation: "Lottie and Joseph Burstein's son; economist.", branch: "ressman" },
+  { name: "Phillip Berns", dates: "?", relation: "Pauline Ressman's husband; retail clothing salesman.", branch: "ressman" },
+  { name: "Robert Berns", dates: "?", relation: "Pauline and Phillip Berns's son.", branch: "ressman" },
+  { name: "Marvin Berns", dates: "1926–", relation: "Pauline and Phillip Berns's son; antique dealer.", branch: "ressman" },
+  { name: "Alan Marcus", dates: "?", relation: "Rose Ressman's husband; tailor.", branch: "ressman" },
+  { name: "Richard Marcus", dates: "1935–", relation: "Rose and Alan Marcus's son; insurance business in Los Angeles.", branch: "ressman" },
+  { name: "Harry Richman", dates: "?", relation: "Flora Ressman's husband; salesman.", branch: "ressman" },
+  { name: "Byron Richman", dates: "1923–", relation: "Flora and Harry Richman's son.", branch: "ressman" },
+  { name: "Morris Abelman", dates: "1901–1959", relation: "Dorothy Ressman's husband; wholesale produce business.", branch: "ressman" },
+  { name: "Joan Abelman Goldberg", dates: "1935–", relation: "Dorothy and Morris Abelman's daughter.", branch: "ressman" },
+  { name: "Milton Less", dates: "?", relation: "Celia Ressman's husband; bookkeeper.", branch: "ressman" },
+  { name: "Howard Less", dates: "1926–", relation: "Celia and Milton Less's son.", branch: "ressman" },
+  { name: "Donald Less", dates: "1930–", relation: "Celia and Milton Less's son.", branch: "ressman" },
   
   // Abram Ressman descendants
   { name: "Carrie Cohen Ressman", dates: "?", relation: "Abram's wife (a widow with a daughter).", branch: "ressman" },
@@ -1739,6 +2447,13 @@ const people = [
   { name: "David Ressman", dates: "?", relation: "Louis & Ida's son. Hairdresser in Chicago.", branch: "ressman" },
   { name: "Esther Ressman Rifkin", dates: "?", relation: "Louis & Ida's daughter.", branch: "ressman" },
   { name: "Harry Ressman (Louis's son)", dates: "?", relation: "Louis & Ida's son.", branch: "ressman" },
+  { name: "Samuel Tenenbaum", dates: "?", relation: "Jeanette Ressman's husband; hardware-store owner.", branch: "ressman" },
+  { name: "Hinda Sue Tenenbaum Gilbert", dates: "1938–", relation: "Jeanette and Samuel Tenenbaum's daughter; systems analyst.", branch: "ressman" },
+  { name: "Carole Ruth Tenenbaum Rubenstein", dates: "1940–", relation: "Jeanette and Samuel Tenenbaum's daughter; formerly a bacteriologist.", branch: "ressman" },
+  { name: "Jeanne Fox Ressman", dates: "?", relation: "David Ressman's wife.", branch: "ressman" },
+  { name: "Richard Bruce Ressman", dates: "1941–", relation: "David and Jeanne Ressman's son; orthopedic surgeon.", branch: "ressman" },
+  { name: "Lynn Roberta Ressman Simon", dates: "1944–", relation: "David and Jeanne Ressman's daughter.", branch: "ressman" },
+  { name: "Nancy Lee Ressman Reil", dates: "1952–", relation: "David and Jeanne Ressman's daughter.", branch: "ressman" },
   { name: "Hyman B. Rifkin", dates: "?", relation: "Esther's husband. Wholesale auto parts, Chicago.", branch: "ressman" },
   { name: "Bennett L. Rifkin", dates: "1942–", relation: "Esther & Hyman's son. Delta Airlines pilot.", branch: "ressman" },
   { name: "Dyann Rifkin Linger", dates: "1946–", relation: "Esther & Hyman's daughter.", branch: "ressman" },
@@ -1749,9 +2464,6 @@ const people = [
   { name: "Laura B. Ressman Fleming", dates: "1950–", relation: "Harry & Helen's daughter.", branch: "ressman" },
   { name: "Anne L. Ressman", dates: "1955–", relation: "Harry & Helen's daughter. Insurance rater.", branch: "ressman" },
   { name: "Douglas Ressman", dates: "1956–", relation: "Harry & Helen's son.", branch: "ressman" },
-  
-  // Lois's siblings & cousins via Slafer
-  { name: "James Slafer", dates: "1963–", relation: "Howard Slafer's son. Lois's nephew.", branch: "slafer" },
   
   // Sister Sylvia descendants
   { name: "Maurice Leavitt", dates: "?", relation: "Ruth Ressman's husband. Dental supply business.", branch: "ressman" },
@@ -1767,7 +2479,19 @@ const people = [
   
   // Miller / Malyn extended
   { name: "Edith Gertrude Miller Malyn", dates: "1898–1973", relation: "Joel's aunt. Married Morris Malyn.", branch: "miller" },
+  { name: "Leah Miller", dates: "1896–", relation: "Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.", branch: "miller" },
+  { name: "Benjamin Miller", dates: "1902–", relation: "Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.", branch: "miller" },
+  { name: "David Miller", dates: "1904–", relation: "Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.", branch: "miller" },
+  { name: "Sarah Miller", dates: "1906–", relation: "Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.", branch: "miller" },
+  { name: "Katherine 'Katie/Kay' Miller", dates: "1906–", relation: "Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.", branch: "miller" },
+  { name: "Carl Julius Miller", dates: "1919–", relation: "Child of Harris Nathan Miller and Mary Ethel Fairchild Rosenberg.", branch: "miller" },
+  { name: "Nathan Malinovsky", dates: "Deceased", relation: "Earliest named ancestor in the related Malinovsky/Malyn pages.", branch: "miller" },
+  { name: "Israel Malinovsky", dates: "1858–1921", relation: "Born in Plotzk, Poland/Russia; married Rebeca Lefchyk.", branch: "miller" },
+  { name: "Rebeca Lefchyk Malinovsky", dates: "1853–1923", relation: "Israel Malinovsky's wife.", branch: "miller" },
   { name: "Morris Malyn (Malinovsky)", dates: "1892–1939", relation: "Edith's husband. From Plotzk, Poland.", branch: "miller" },
+  { name: "Max Malyn / Malinovsky", dates: "?", relation: "Child of Israel Malinovsky and Rebeca Lefchyk.", branch: "miller" },
+  { name: "Mary Malyn / Malinovsky", dates: "?", relation: "Child of Israel Malinovsky and Rebeca Lefchyk.", branch: "miller" },
+  { name: "Sam Malyn / Malinovsky", dates: "?", relation: "Child of Israel Malinovsky and Rebeca Lefchyk.", branch: "miller" },
   { name: "Herbert Malyn", dates: "1921–", relation: "Edith & Morris's son.", branch: "miller" },
   { name: "Irving Malyn", dates: "1922–", relation: "Edith & Morris's son.", branch: "miller" },
   { name: "Milton Robert Malyn", dates: "1927–", relation: "Edith & Morris's son.", branch: "miller" },
@@ -1810,6 +2534,9 @@ const storiesGrid = document.getElementById('stories-grid');
 stories.forEach((story, i) => {
   const card = document.createElement('div');
   card.className = 'story-card fade-in';
+  card.setAttribute('role', 'button');
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('aria-label', `Read ${story.title}`);
   card.innerHTML = `
     <div class="story-icon">${story.icon}</div>
     <div class="story-title">${story.title}</div>
@@ -1817,6 +2544,12 @@ stories.forEach((story, i) => {
     <div class="story-cta">Read the story →</div>
   `;
   card.addEventListener('click', () => openModal(story));
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openModal(story);
+    }
+  });
   storiesGrid.appendChild(card);
 });
 
@@ -1826,8 +2559,11 @@ businesses.forEach(b => {
   const el = document.createElement('div');
   el.className = 'business-card fade-in';
   el.innerHTML = `
-    <div class="business-year">${b.year}</div>
+    <a class="business-media" href="${b.image}" aria-label="Open image for ${b.name}">
+      <img loading="lazy" src="${b.image}" alt="${b.imageAlt}">
+    </a>
     <div>
+      <div class="business-year">${b.year}</div>
       <div class="business-name">${b.name}</div>
       <div class="business-place">${b.place}</div>
       <div class="business-desc">${b.desc}</div>
@@ -1870,6 +2606,8 @@ function renderPeople() {
     card.className = 'person-card';
     const branchLabel = {
       ressman: 'Ressman',
+      pessin: 'Pessin',
+      vanetsky: 'Vanetsky',
       bailin: 'Bailin',
       bahcall: 'Bahcall',
       miller: 'Miller',
