@@ -232,7 +232,7 @@ const html = `<!DOCTYPE html>
   }
 
   .cover {
-    min-height: 8in;
+    height: 7.48in;
     display: grid;
     align-content: center;
     text-align: center;
